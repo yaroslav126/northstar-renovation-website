@@ -137,7 +137,7 @@ function northstar_render_seo_meta() {
 		}
 	}
 
-	$default_img = NORTHSTAR_URI . '/assets/images/hero-bg.svg';
+	$default_img = NORTHSTAR_URI . '/assets/images/hero-bg.jpg';
 	$og_img      = has_post_thumbnail() ? get_the_post_thumbnail_url( null, 'ns-hero' ) : $default_img;
 	?>
 	<meta name="description" content="<?php echo esc_attr( $description ); ?>">
@@ -207,7 +207,7 @@ function northstar_get_demo_services() {
 			'title'       => __( 'Kitchen Renovation', 'northstar-renovation' ),
 			'tagline'     => __( 'Architectural Culinary Environments', 'northstar-renovation' ),
 			'description' => __( 'We design and construct bespoke culinary spaces engineered for seamless workflow, generous entertaining, and tactile permanence. From book-matched stone counters to custom walnut cabinetry.', 'northstar-renovation' ),
-			'image'       => NORTHSTAR_URI . '/assets/images/service-kitchen.svg',
+			'image'       => NORTHSTAR_URI . '/assets/images/service-kitchen.jpg',
 			'icon'        => NORTHSTAR_URI . '/assets/icons/kitchen.svg',
 			'deliverables'=> array(
 				__( 'Custom architectural cabinetry & integrated millwork', 'northstar-renovation' ),
@@ -225,7 +225,7 @@ function northstar_get_demo_services() {
 			'title'       => __( 'Bathroom Remodeling', 'northstar-renovation' ),
 			'tagline'     => __( 'Private Spa Sanctuaries & Primary Suites', 'northstar-renovation' ),
 			'description' => __( 'Transform primary ensuites and guest baths into restorative sanctuaries. We execute curbless walk-in showers, freestanding sculptural tubs, fluted glass partitions, and heated stone floors.', 'northstar-renovation' ),
-			'image'       => NORTHSTAR_URI . '/assets/images/service-bathroom.svg',
+			'image'       => NORTHSTAR_URI . '/assets/images/service-bathroom.jpg',
 			'icon'        => NORTHSTAR_URI . '/assets/icons/bathroom.svg',
 			'deliverables'=> array(
 				__( 'Curbless wet-room showers with linear acoustic drains', 'northstar-renovation' ),
@@ -243,7 +243,7 @@ function northstar_get_demo_services() {
 			'title'       => __( 'Whole-Home Renovation', 'northstar-renovation' ),
 			'tagline'     => __( 'Comprehensive Architectural Renewal', 'northstar-renovation' ),
 			'description' => __( 'Complete structural and cosmetic renewals that preserve historic character while dramatically upgrading thermal performance, mechanical systems, and contemporary spatial flow.', 'northstar-renovation' ),
-			'image'       => NORTHSTAR_URI . '/assets/images/service-wholehome.svg',
+			'image'       => NORTHSTAR_URI . '/assets/images/service-wholehome.jpg',
 			'icon'        => NORTHSTAR_URI . '/assets/icons/home.svg',
 			'deliverables'=> array(
 				__( 'Complete interior demolition down to structural framing', 'northstar-renovation' ),
@@ -261,7 +261,7 @@ function northstar_get_demo_services() {
 			'title'       => __( 'Interior Design & Remodeling', 'northstar-renovation' ),
 			'tagline'     => __( 'Spatial Harmony & Material Curation', 'northstar-renovation' ),
 			'description' => __( 'Detailed spatial planning that unifies living, dining, and transition areas. We craft custom built-ins, modern architectural fireplaces, steel-and-glass partitions, and refined acoustic treatments.', 'northstar-renovation' ),
-			'image'       => NORTHSTAR_URI . '/assets/images/service-interior.svg',
+			'image'       => NORTHSTAR_URI . '/assets/images/service-interior.jpg',
 			'icon'        => NORTHSTAR_URI . '/assets/icons/interior.svg',
 			'deliverables'=> array(
 				__( 'Floor-to-ceiling architectural libraries & media units', 'northstar-renovation' ),
@@ -279,7 +279,7 @@ function northstar_get_demo_services() {
 			'title'       => __( 'Flooring & Finishing', 'northstar-renovation' ),
 			'tagline'     => __( 'Foundational Craftsmanship Underfoot', 'northstar-renovation' ),
 			'description' => __( 'Artisan wide-plank white oak, chevron and herringbone parquet, poured terrazzo, and large-format porcelain slabs installed with laser-leveled subfloor perfection.', 'northstar-renovation' ),
-			'image'       => NORTHSTAR_URI . '/assets/images/service-flooring.svg',
+			'image'       => NORTHSTAR_URI . '/assets/images/service-flooring.jpg',
 			'icon'        => NORTHSTAR_URI . '/assets/icons/flooring.svg',
 			'deliverables'=> array(
 				__( 'Engineered wide-plank European white oak (up to 10" width)', 'northstar-renovation' ),
@@ -305,7 +305,7 @@ function northstar_get_demo_projects() {
 			'location'    => __( 'Kensington Gardens (Demonstration)', 'northstar-renovation' ),
 			'timeline'    => __( '22 Weeks', 'northstar-renovation' ),
 			'budget_tier' => __( '$280k – $320k (Demo)', 'northstar-renovation' ),
-			'image'       => NORTHSTAR_URI . '/assets/images/project-1.svg',
+			'image'       => NORTHSTAR_URI . '/assets/images/project-1.jpg',
 			'excerpt'     => __( 'A comprehensive renewal of a 1912 Edwardian residence, removing interior bearing partitions to introduce a sun-drenched architectural kitchen, primary bath pavilion, and restored timber millwork.', 'northstar-renovation' ),
 			'features'    => array(
 				__( '4,200 sq.ft comprehensive transformation', 'northstar-renovation' ),
@@ -323,7 +323,7 @@ function northstar_get_demo_projects() {
 			'location'    => __( 'St. Clair West (Demonstration)', 'northstar-renovation' ),
 			'timeline'    => __( '10 Weeks', 'northstar-renovation' ),
 			'budget_tier' => __( '$85k – $95k (Demo)', 'northstar-renovation' ),
-			'image'       => NORTHSTAR_URI . '/assets/images/project-2.svg',
+			'image'       => NORTHSTAR_URI . '/assets/images/project-2.jpg',
 			'excerpt'     => __( 'Conceived around a 13-foot monolithic island in honed Calacatta marble, complemented by dark smoked-oak veneer cabinetry, pocket pantry doors, and flush ceiling extraction.', 'northstar-renovation' ),
 			'features'    => array(
 				__( 'Continuous book-matched Calacatta marble waterfall island', 'northstar-renovation' ),
@@ -341,7 +341,7 @@ function northstar_get_demo_projects() {
 			'location'    => __( 'Oakridge Hills (Demonstration)', 'northstar-renovation' ),
 			'timeline'    => __( '8 Weeks', 'northstar-renovation' ),
 			'budget_tier' => __( '$55k – $65k (Demo)', 'northstar-renovation' ),
-			'image'       => NORTHSTAR_URI . '/assets/images/project-3.svg',
+			'image'       => NORTHSTAR_URI . '/assets/images/project-3.jpg',
 			'excerpt'     => __( 'A sanctuary-grade ensuite pairing micro-cement plaster walls with custom fluted walnut vanities, brushed gunmetal tapware, and a generous curbless double shower.', 'northstar-renovation' ),
 			'features'    => array(
 				__( 'Seamless micro-cement waterproof walls and heated floor', 'northstar-renovation' ),
@@ -359,7 +359,7 @@ function northstar_get_demo_projects() {
 			'location'    => __( 'Yorkville Core (Demonstration)', 'northstar-renovation' ),
 			'timeline'    => __( '14 Weeks', 'northstar-renovation' ),
 			'budget_tier' => __( '$140k – $160k (Demo)', 'northstar-renovation' ),
-			'image'       => NORTHSTAR_URI . '/assets/images/project-4.svg',
+			'image'       => NORTHSTAR_URI . '/assets/images/project-4.jpg',
 			'excerpt'     => __( 'Reimagining an angular condominium floorplan into a calm, gallery-like residence with floor-to-ceiling pivot doors, acoustic wall paneling, and an integrated marble bar.', 'northstar-renovation' ),
 			'features'    => array(
 				__( 'Full condominium acoustic decoupling and vibration barrier', 'northstar-renovation' ),
@@ -377,7 +377,7 @@ function northstar_get_demo_projects() {
 			'location'    => __( 'Forest Hill (Demonstration)', 'northstar-renovation' ),
 			'timeline'    => __( '26 Weeks', 'northstar-renovation' ),
 			'budget_tier' => __( '$340k – $390k (Demo)', 'northstar-renovation' ),
-			'image'       => NORTHSTAR_URI . '/assets/images/project-5.svg',
+			'image'       => NORTHSTAR_URI . '/assets/images/project-5.jpg',
 			'excerpt'     => __( 'An extensive Scandinavian-inspired renewal showcasing exposed Douglas fir beams, heated terrazzo flooring, triple-glazed floor-to-ceiling glass, and a bespoke chef kitchen.', 'northstar-renovation' ),
 			'features'    => array(
 				__( 'Net-zero thermal envelope retrofit with exterior continuous insulation', 'northstar-renovation' ),
@@ -395,7 +395,7 @@ function northstar_get_demo_projects() {
 			'location'    => __( 'Rosedale South (Demonstration)', 'northstar-renovation' ),
 			'timeline'    => __( '7 Weeks', 'northstar-renovation' ),
 			'budget_tier' => __( '$45k – $55k (Demo)', 'northstar-renovation' ),
-			'image'       => NORTHSTAR_URI . '/assets/images/project-6.svg',
+			'image'       => NORTHSTAR_URI . '/assets/images/project-6.jpg',
 			'excerpt'     => __( 'Master carpenter execution of custom quarter-sawn oak library shelving, hidden panel doors, and herringbone parquet flooring with handcrafted brass inlays.', 'northstar-renovation' ),
 			'features'    => array(
 				__( 'Quarter-sawn French oak custom herringbone parquet', 'northstar-renovation' ),
@@ -439,25 +439,25 @@ function northstar_get_demo_team() {
 			'name'  => __( 'Elena Vance, AIA', 'northstar-renovation' ),
 			'role'  => __( 'Founder & Principal Architect', 'northstar-renovation' ),
 			'bio'   => __( 'With 18 years specializing in residential conservation and modern extensions, Elena bridges conceptual architectural vision with practical construction economics.', 'northstar-renovation' ),
-			'image' => NORTHSTAR_URI . '/assets/images/team-1.svg',
+			'image' => NORTHSTAR_URI . '/assets/images/team-1.jpg',
 		),
 		array(
 			'name'  => __( 'Marcus Thorne', 'northstar-renovation' ),
 			'role'  => __( 'Director of Construction & Master Craftsman', 'northstar-renovation' ),
 			'bio'   => __( 'A third-generation builder with red-seal certification, Marcus oversees all site supers, trade coordination, structural engineering, and finish quality control.', 'northstar-renovation' ),
-			'image' => NORTHSTAR_URI . '/assets/images/team-2.svg',
+			'image' => NORTHSTAR_URI . '/assets/images/team-2.jpg',
 		),
 		array(
 			'name'  => __( 'David Sterling', 'northstar-renovation' ),
 			'role'  => __( 'Lead Interior Architect', 'northstar-renovation' ),
 			'bio'   => __( 'Specializing in bespoke millwork, spatial acoustics, and tactile stone sourcing, David curates cohesive material palettes tailored to client lifestyles.', 'northstar-renovation' ),
-			'image' => NORTHSTAR_URI . '/assets/images/team-3.svg',
+			'image' => NORTHSTAR_URI . '/assets/images/team-3.jpg',
 		),
 		array(
 			'name'  => __( 'Claire Dubois', 'northstar-renovation' ),
 			'role'  => __( 'Client Experience & Project Director', 'northstar-renovation' ),
 			'bio'   => __( 'Claire serves as the single dedicated point of contact for homeowners, coordinating schedule transparency, permit logistics, and budget accounting.', 'northstar-renovation' ),
-			'image' => NORTHSTAR_URI . '/assets/images/team-4.svg',
+			'image' => NORTHSTAR_URI . '/assets/images/team-4.jpg',
 		),
 	);
 }
@@ -471,7 +471,7 @@ function northstar_get_demo_posts() {
 			'author'      => 'Elena Vance',
 			'category'    => __( 'Kitchen Design', 'northstar-renovation' ),
 			'read_time'   => __( '7 min read', 'northstar-renovation' ),
-			'image'       => NORTHSTAR_URI . '/assets/images/blog-1.svg',
+			'image'       => NORTHSTAR_URI . '/assets/images/blog-1.jpg',
 			'excerpt'     => __( 'Before selecting marble slabs or cabinet finishes, an architectural kitchen begins with human movement. How to engineer working triangles, acoustic comfort, and hidden storage systems.', 'northstar-renovation' ),
 		),
 		array(
@@ -481,7 +481,7 @@ function northstar_get_demo_posts() {
 			'author'      => 'David Sterling',
 			'category'    => __( 'Materials & Sourcing', 'northstar-renovation' ),
 			'read_time'   => __( '6 min read', 'northstar-renovation' ),
-			'image'       => NORTHSTAR_URI . '/assets/images/blog-2.svg',
+			'image'       => NORTHSTAR_URI . '/assets/images/blog-2.jpg',
 			'excerpt'     => __( 'An honest breakdown of maintenance requirements, thermal resistance, patina evolution, and cost metrics between honed marble, quartzite, and sintered stone countertops.', 'northstar-renovation' ),
 		),
 		array(
@@ -491,7 +491,7 @@ function northstar_get_demo_posts() {
 			'author'      => 'Claire Dubois',
 			'category'    => __( 'Project Planning', 'northstar-renovation' ),
 			'read_time'   => __( '5 min read', 'northstar-renovation' ),
-			'image'       => NORTHSTAR_URI . '/assets/images/blog-3.svg',
+			'image'       => NORTHSTAR_URI . '/assets/images/blog-3.jpg',
 			'excerpt'     => __( 'Dust barriers, negative air scrubbers, temporary kitchen setups, and structured quiet hours: how our construction protocols minimize lifestyle disruption.', 'northstar-renovation' ),
 		),
 		array(
@@ -501,7 +501,7 @@ function northstar_get_demo_posts() {
 			'author'      => 'Marcus Thorne',
 			'category'    => __( 'Architectural Renovation', 'northstar-renovation' ),
 			'read_time'   => __( '8 min read', 'northstar-renovation' ),
-			'image'       => NORTHSTAR_URI . '/assets/images/blog-4.svg',
+			'image'       => NORTHSTAR_URI . '/assets/images/blog-4.jpg',
 			'excerpt'     => __( 'Balancing heritage conservation rules with modern daylighting. We analyze structural roof lights, steel-framed rear pavilions, and thermal envelope integrity.', 'northstar-renovation' ),
 		),
 	);

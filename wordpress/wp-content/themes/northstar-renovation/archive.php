@@ -37,7 +37,7 @@ get_header();
 							<?php if ( has_post_thumbnail() ) : ?>
 								<?php the_post_thumbnail( 'ns-card' ); ?>
 							<?php else : ?>
-								<img src="<?php echo esc_url( NORTHSTAR_URI . '/assets/images/blog-1.svg' ); ?>" alt="<?php the_title_attribute(); ?>">
+								<img src="<?php echo esc_url( NORTHSTAR_URI . '/assets/images/blog-1.jpg' ); ?>" alt="<?php the_title_attribute(); ?>">
 							<?php endif; ?>
 						</div>
 						<div class="ns-project-card-body">

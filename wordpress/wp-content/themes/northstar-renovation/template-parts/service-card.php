@@ -16,7 +16,7 @@ if ( ! $service ) {
 
 $title        = $service['title'] ?? get_the_title();
 $description  = $service['description'] ?? get_the_excerpt();
-$image        = $service['image'] ?? ( has_post_thumbnail() ? get_the_post_thumbnail_url( null, 'ns-card' ) : NORTHSTAR_URI . '/assets/images/service-kitchen.svg' );
+$image        = $service['image'] ?? ( has_post_thumbnail() ? get_the_post_thumbnail_url( null, 'ns-card' ) : NORTHSTAR_URI . '/assets/images/service-kitchen.jpg' );
 $icon         = $service['icon'] ?? NORTHSTAR_URI . '/assets/icons/home.svg';
 $deliverables = $service['deliverables'] ?? array();
 $timeline     = $service['timeline'] ?? '';

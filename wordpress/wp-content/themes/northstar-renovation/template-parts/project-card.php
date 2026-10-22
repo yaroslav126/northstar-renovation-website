@@ -20,7 +20,7 @@ $category_lbl = $project['category_lbl'] ?? __( 'Renovation', 'northstar-renovat
 $location     = $project['location'] ?? __( 'Metropolitan Area', 'northstar-renovation' );
 $timeline     = $project['timeline'] ?? '';
 $budget_tier  = $project['budget_tier'] ?? '';
-$image        = $project['image'] ?? ( has_post_thumbnail() ? get_the_post_thumbnail_url( null, 'ns-card' ) : NORTHSTAR_URI . '/assets/images/project-1.svg' );
+$image        = $project['image'] ?? ( has_post_thumbnail() ? get_the_post_thumbnail_url( null, 'ns-card' ) : NORTHSTAR_URI . '/assets/images/project-1.jpg' );
 $excerpt      = $project['excerpt'] ?? get_the_excerpt();
 $slug         = $project['slug'] ?? 'project';
 ?>

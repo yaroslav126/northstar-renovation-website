@@ -84,7 +84,7 @@ $projects = function_exists( 'northstar_get_demo_projects' ) ? northstar_get_dem
 		<div class="ns-grid-2" style="align-items: center; margin-bottom: var(--ns-space-10);">
 			<div>
 				<div style="aspect-ratio: 16/10; border-radius: var(--ns-radius-sm); overflow: hidden; border: 1px solid var(--ns-color-border);">
-					<img src="<?php echo esc_url( NORTHSTAR_URI . '/assets/images/project-1.svg' ); ?>" alt="<?php esc_attr_e( 'Kensington Heritage Villa Case Study', 'northstar-renovation' ); ?>" loading="lazy" width="800" height="500" style="width: 100%; height: 100%; object-fit: cover;">
+					<img src="<?php echo esc_url( NORTHSTAR_URI . '/assets/images/project-1.jpg' ); ?>" alt="<?php esc_attr_e( 'Kensington Heritage Villa Case Study', 'northstar-renovation' ); ?>" loading="lazy" width="800" height="500" style="width: 100%; height: 100%; object-fit: cover;">
 				</div>
 			</div>
 

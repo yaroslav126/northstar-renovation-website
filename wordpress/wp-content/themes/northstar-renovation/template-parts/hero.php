@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <section class="ns-hero" aria-label="<?php esc_attr_e( 'Hero Introduction', 'northstar-renovation' ); ?>">
-	<img src="<?php echo esc_url( NORTHSTAR_URI . '/assets/images/hero-bg.svg' ); ?>" alt="" class="ns-hero-bg" aria-hidden="true" width="1920" height="1080">
+	<img src="<?php echo esc_url( NORTHSTAR_URI . '/assets/images/hero-bg.jpg' ); ?>" alt="" class="ns-hero-bg" aria-hidden="true" width="1920" height="1080">
 
 	<div class="ns-container">
 		<div class="ns-hero-inner">

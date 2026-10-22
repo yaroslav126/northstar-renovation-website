@@ -51,7 +51,7 @@ $team = function_exists( 'northstar_get_demo_team' ) ? northstar_get_demo_team()
 
 			<div>
 				<div style="aspect-ratio: 4/3; border-radius: var(--ns-radius-sm); overflow: hidden; border: 1px solid var(--ns-color-border); box-shadow: var(--ns-shadow-card);">
-					<img src="<?php echo esc_url( NORTHSTAR_URI . '/assets/images/service-interior.svg' ); ?>" alt="<?php esc_attr_e( 'Architectural interior craftsmanship and joinery', 'northstar-renovation' ); ?>" loading="lazy" width="800" height="600" style="width: 100%; height: 100%; object-fit: cover;">
+					<img src="<?php echo esc_url( NORTHSTAR_URI . '/assets/images/service-interior.jpg' ); ?>" alt="<?php esc_attr_e( 'Architectural interior craftsmanship and joinery', 'northstar-renovation' ); ?>" loading="lazy" width="800" height="600" style="width: 100%; height: 100%; object-fit: cover;">
 				</div>
 			</div>
 		</div>

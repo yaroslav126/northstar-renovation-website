@@ -43,7 +43,7 @@ $demo_posts = function_exists( 'northstar_get_demo_posts' ) ? northstar_get_demo
 							<?php if ( has_post_thumbnail() ) : ?>
 								<?php the_post_thumbnail( 'ns-card' ); ?>
 							<?php else : ?>
-								<img src="<?php echo esc_url( NORTHSTAR_URI . '/assets/images/blog-1.svg' ); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy">
+								<img src="<?php echo esc_url( NORTHSTAR_URI . '/assets/images/blog-1.jpg' ); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy">
 							<?php endif; ?>
 							<span class="ns-project-badge"><?php the_category( ', ' ); ?></span>
 						</div>

@@ -52,7 +52,7 @@ get_template_part( 'template-parts/hero' );
 
 			<div style="position: relative;">
 				<div style="aspect-ratio: 4/3; border-radius: var(--ns-radius-sm); overflow: hidden; border: 1px solid var(--ns-color-border); box-shadow: var(--ns-shadow-card);">
-					<img src="<?php echo esc_url( NORTHSTAR_URI . '/assets/images/service-wholehome.svg' ); ?>" alt="<?php esc_attr_e( 'Architectural whole home renovation craftsmanship', 'northstar-renovation' ); ?>" loading="lazy" width="800" height="600" style="width: 100%; height: 100%; object-fit: cover;">
+					<img src="<?php echo esc_url( NORTHSTAR_URI . '/assets/images/service-wholehome.jpg' ); ?>" alt="<?php esc_attr_e( 'Architectural whole home renovation craftsmanship', 'northstar-renovation' ); ?>" loading="lazy" width="800" height="600" style="width: 100%; height: 100%; object-fit: cover;">
 				</div>
 				<div style="position: absolute; bottom: -20px; left: 30px; background-color: var(--ns-color-forest); color: var(--ns-color-ivory); padding: var(--ns-space-4) var(--ns-space-6); border-radius: var(--ns-radius-sm); box-shadow: var(--ns-shadow-hover); border: 1px solid var(--ns-color-stone);">
 					<span style="font-family: var(--ns-font-serif); font-size: 1.75rem; font-weight: 700; color: var(--ns-color-terracotta); display: block; line-height: 1;">100%</span>
