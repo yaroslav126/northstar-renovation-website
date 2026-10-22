@@ -1,0 +1,38 @@
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor & IDE Directories
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs and Databases
+*.log
+*.sql
+*.sqlite
+
+# Node / NPM
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# WordPress Core (keep repository focused on custom theme and plugin)
+wp-config.php
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/languages/
+wp-content/plugins/index.php
+wp-content/themes/index.php
+
+# Local Test Artifacts
+tests/screenshots/*.png
+!tests/screenshots/.gitkeep

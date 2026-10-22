@@ -1,0 +1,143 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": true,
+		"layout": {
+			"contentSize": "840px",
+			"wideSize": "1240px"
+		},
+		"color": {
+			"custom": true,
+			"customDuotone": false,
+			"customGradient": false,
+			"defaultPalette": false,
+			"defaultGradients": false,
+			"palette": [
+				{
+					"slug": "forest",
+					"color": "#203A32",
+					"name": "Forest Green"
+				},
+				{
+					"slug": "forest-dark",
+					"color": "#162822",
+					"name": "Deep Forest"
+				},
+				{
+					"slug": "ivory",
+					"color": "#F7F5EF",
+					"name": "Warm Ivory"
+				},
+				{
+					"slug": "stone",
+					"color": "#D9D3C7",
+					"name": "Muted Stone"
+				},
+				{
+					"slug": "charcoal",
+					"color": "#272A28",
+					"name": "Architectural Charcoal"
+				},
+				{
+					"slug": "terracotta",
+					"color": "#B96C4B",
+					"name": "Terracotta Accent"
+				},
+				{
+					"slug": "white",
+					"color": "#FFFFFF",
+					"name": "Pure White"
+				}
+			]
+		},
+		"typography": {
+			"customFontSize": true,
+			"fluid": true,
+			"fontFamilies": [
+				{
+					"fontFamily": "\"Cormorant Garamond\", \"Libre Baskerville\", Georgia, serif",
+					"slug": "serif-display",
+					"name": "Editorial Serif"
+				},
+				{
+					"fontFamily": "\"Plus Jakarta Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+					"slug": "sans-body",
+					"name": "Humanist Sans"
+				}
+			],
+			"fontSizes": [
+				{
+					"slug": "small",
+					"size": "0.875rem",
+					"name": "Small"
+				},
+				{
+					"slug": "medium",
+					"size": "1.0625rem",
+					"name": "Standard Body"
+				},
+				{
+					"slug": "large",
+					"size": "1.5rem",
+					"name": "Heading 3"
+				},
+				{
+					"slug": "x-large",
+					"size": "2.25rem",
+					"name": "Heading 2"
+				},
+				{
+					"slug": "xx-large",
+					"size": "3rem",
+					"name": "Heading 1"
+				}
+			]
+		},
+		"spacing": {
+			"units": ["px", "em", "rem", "%", "vw", "vh"]
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "var(--wp--preset--color--ivory)",
+			"text": "var(--wp--preset--color--charcoal)"
+		},
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--sans-body)",
+			"fontSize": "var(--wp--preset--font-size--medium)",
+			"lineHeight": "1.65"
+		},
+		"elements": {
+			"heading": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--serif-display)",
+					"fontWeight": "600",
+					"lineHeight": "1.25"
+				},
+				"color": {
+					"text": "var(--wp--preset--color--forest)"
+				}
+			},
+			"link": {
+				"color": {
+					"text": "var(--wp--preset--color--forest)"
+				},
+				":hover": {
+					"color": {
+						"text": "var(--wp--preset--color--terracotta)"
+					}
+				}
+			},
+			"button": {
+				"color": {
+					"background": "var(--wp--preset--color--forest)",
+					"text": "var(--wp--preset--color--ivory)"
+				},
+				"border": {
+					"radius": "4px"
+				}
+			}
+		}
+	}
+}
