@@ -95,9 +95,21 @@ We evaluated all discovered skills against the project requirements (WordPress d
   3. **Visible master-level craftsmanship**: Every border, rule, spacing rhythm, and typographic weight feels painstakingly calibrated rather than generated from generic boilerplate.
 * **Milestones Applied**: Milestone 2 (Design System), Milestone 4 (Editorial Compositions).
 
+### Skill 6: `modern-web-guidance` (`responsive-layouts-and-touch-interactions`)
+* **File Path**: `/home/rslv/.gemini/config/plugins/modern-web-guidance-plugin/skills/modern-web-guidance/SKILL.md`
+* **Topic**: `responsive-layouts` and `touch-interactions`
+* **Discipline**: Responsive Window Proportioning, Aspect Ratio Control, Compositor Optimization, Touch Target Sizing (WCAG 2.5.5)
+* **Key Requirements & Principles Followed**:
+  1. **Precision Window Calibration via `aspect-ratio`**: Enforced `aspect-ratio: 16 / 10` for architectural showcase windows across PC and mobile to eliminate vertical height bloat and avoid layout shift.
+  2. **Zero-Overflow Mobile Boundaries**: Re-anchored floating badges from negative edge offsets to clean container-relative coordinates (`left: 12px; bottom: 12px;`), backed by frosted glass for high legibility and 0 horizontal scroll overflow.
+  3. **Complete Parallax Elimination**: Following user direction, safely eliminated scroll parallax calculations and listeners while preserving static hardware-accelerated card hover interactions.
+  4. **Touch Target Sizing & Manipulation**: Enforced 48px–52px min-height on mobile navigation links, accordions, and sticky bottom consultation bar with `touch-action: manipulation`.
+* **Milestones Applied**: Milestone 5 (Responsive Layout Calibration), Milestone 7 (A11y & Mobile Verification), Milestone 8 (Automated End-to-End Testing).
+
 ---
 
 ## 3. Discovered Skills Evaluated as Not Applicable
+
 
 | Discovered Skill | Evaluation / Reason for Non-Application |
 | :--- | :--- |

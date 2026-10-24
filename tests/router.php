@@ -23,6 +23,11 @@ if ( '/style.css' === $uri ) {
 	readfile( $theme_dir . '/style.css' );
 	exit;
 }
+if ( '/humans.txt' === $uri ) {
+	header( 'Content-Type: text/plain; charset=UTF-8' );
+	readfile( __DIR__ . '/../humans.txt' );
+	exit;
+}
 
 if ( strpos( $uri, '/assets/' ) === 0 ) {
 	$file = $theme_dir . $uri;
@@ -96,7 +101,7 @@ function get_template_directory_uri() { return 'http://127.0.0.1:8080'; }
 function get_stylesheet_uri() { return 'http://127.0.0.1:8080/style.css'; }
 function get_bloginfo( $show = 'name' ) {
 	if ( 'name' === $show ) return 'Northstar Renovation';
-	if ( 'description' === $show ) return 'Architectural Residential Renovation';
+	if ( 'description' === $show ) return 'Architectural Renovation';
 	if ( 'charset' === $show ) return 'UTF-8';
 	return '';
 }

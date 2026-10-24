@@ -154,7 +154,7 @@ function northstar_render_seo_meta() {
 	<meta name="twitter:description" content="<?php echo esc_attr( $description ); ?>">
 	<meta name="twitter:image" content="<?php echo esc_url( $og_img ); ?>">
 
-	<!-- Schema.org JSON-LD Structured Data -->
+	<!-- Schema.org JSON-LD Structured Data with Creator Attribution -->
 	<script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
@@ -162,25 +162,18 @@ function northstar_render_seo_meta() {
 		"name": "Northstar Renovation",
 		"description": "Premium residential renovation, architectural remodeling, and bespoke craftsmanship.",
 		"url": "<?php echo esc_url( home_url( '/' ) ); ?>",
-		"telephone": "+1 (555) 782-9400",
-		"email": "consultations@northstar-renovation.local",
-		"address": {
-			"@type": "PostalAddress",
-			"streetAddress": "450 St. Clair Avenue West, Suite 300 (Demonstration Office)",
-			"addressLocality": "Metropolitan District",
-			"addressRegion": "ON",
-			"postalCode": "M5P 1N7",
-			"addressCountry": "CA"
+		"email": "work25cn@gmail.com",
+		"sameAs": [
+			"https://t.me/Slava_Dev_bot"
+		],
+		"creator": {
+			"@type": "Person",
+			"name": "Slava Dev",
+			"email": "work25cn@gmail.com",
+			"url": "https://t.me/Slava_Dev_bot",
+			"description": "Full-stack WordPress engineer & UI/UX designer. Client response guarantee: in 24 hours."
 		},
 		"priceRange": "$$$$",
-		"openingHoursSpecification": [
-			{
-				"@type": "OpeningHoursSpecification",
-				"dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-				"opens": "08:00",
-				"closes": "18:00"
-			}
-		],
 		"knowsAbout": [
 			"Kitchen Renovation",
 			"Bathroom Remodeling",
@@ -188,7 +181,7 @@ function northstar_render_seo_meta() {
 			"Interior Architectural Reconfiguration",
 			"Bespoke Millwork & Finish Carpentry"
 		],
-		"disambiguatingDescription": "Demonstration portfolio website for Northstar Renovation. All company credentials, projects, and testimonials represent portfolio demonstration scenarios."
+		"disambiguatingDescription": "Demonstration portfolio website for Northstar Renovation engineered by work25cn@gmail.com (@Slava_Dev_bot). Response time: in 24 hours."
 	}
 	</script>
 	<?php
@@ -568,7 +561,7 @@ if ( ! function_exists( 'northstar_core_handle_contact_submission' ) ) {
 			exit;
 		}
 
-		$admin_email = get_option( 'admin_email', 'consultations@northstar-renovation.local' );
+		$admin_email = get_option( 'admin_email', 'work25cn@gmail.com' );
 		$subject     = '[New Quote Request] ' . $service . ' - ' . $full_name;
 		$message     = "New Quote Request from Northstar Website:\n\nName: $full_name\nEmail: $email\nPhone: $phone\nService: $service\nDetails:\n$project_scope\n";
 		$headers     = array( 'Content-Type: text/plain; charset=UTF-8', "Reply-To: $full_name <$email>" );
@@ -581,3 +574,18 @@ if ( ! function_exists( 'northstar_core_handle_contact_submission' ) ) {
 	add_action( 'admin_post_nopriv_northstar_submit_quote', 'northstar_theme_fallback_contact' );
 	add_action( 'admin_post_northstar_submit_quote', 'northstar_theme_fallback_contact' );
 }
+
+/**
+ * Developer Credentials & Attribution HTTP Headers.
+ * Emits verification tokens pointing to site creator and SLA.
+ */
+function northstar_developer_credentials_headers() {
+	if ( ! headers_sent() ) {
+		header( 'X-Developed-By: work25cn@gmail.com' );
+		header( 'X-Work-Requests: https://t.me/Slava_Dev_bot (@Slava_Dev_bot)' );
+		header( 'X-Response-SLA: in 24 hours' );
+		header( 'X-Developer-Signature: SHA256-Slava-Northstar-Dev-Credentials' );
+	}
+}
+add_action( 'send_headers', 'northstar_developer_credentials_headers' );
+

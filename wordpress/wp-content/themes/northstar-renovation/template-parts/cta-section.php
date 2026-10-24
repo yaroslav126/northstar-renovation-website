@@ -27,13 +27,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="ns-btn ns-btn-terracotta">
 				<?php esc_html_e( 'Schedule Your Consultation', 'northstar-renovation' ); ?> &rarr;
 			</a>
-			<a href="tel:+15557829400" class="ns-btn ns-btn-outline-light">
-				<?php esc_html_e( 'Direct Inquiries: (555) 782-9400', 'northstar-renovation' ); ?>
+			<a href="https://t.me/Slava_Dev_bot" target="_blank" rel="noopener noreferrer" class="ns-btn ns-btn-outline-light">
+				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: -3px;" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg><?php esc_html_e( 'Telegram Bot: @Slava_Dev_bot', 'northstar-renovation' ); ?>
 			</a>
 		</div>
 
-		<p style="font-size: 0.8125rem; color: var(--ns-color-stone); opacity: 0.8;">
-			<?php esc_html_e( 'Zero obligation. Transparent estimates. Demonstration contact inquiries are logged safely.', 'northstar-renovation' ); ?>
+		<p style="font-size: 0.8125rem; color: var(--ns-color-stone); opacity: 0.85;">
+			<?php esc_html_e( 'Direct developer contact: work25cn@gmail.com • Answering client messages in 24 hours.', 'northstar-renovation' ); ?>
 		</p>
 	</div>
 </section>

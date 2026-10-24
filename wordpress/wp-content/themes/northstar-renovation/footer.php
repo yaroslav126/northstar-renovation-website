@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<div class="ns-brand-mark" style="background-color: var(--ns-color-ivory); color: var(--ns-color-forest);">N</div>
 					<div class="ns-brand-text">
 						<span class="ns-brand-title" style="color: var(--ns-color-ivory);"><?php bloginfo( 'name' ); ?></span>
-						<span class="ns-brand-tagline"><?php esc_html_e( 'Architectural Residential Renovation', 'northstar-renovation' ); ?></span>
+						<span class="ns-brand-tagline"><?php esc_html_e( 'Architectural Renovation', 'northstar-renovation' ); ?></span>
 					</div>
 				</a>
 				<p style="font-size: 0.9375rem; color: var(--ns-color-stone); margin-bottom: var(--ns-space-4);">
@@ -52,19 +52,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</ul>
 			</div>
 
-			<!-- Col 4: Studio Contact -->
+			<!-- Col 4: Studio Contact & Engineering Info -->
 			<div class="ns-footer-col">
-				<h4><?php esc_html_e( 'Consultation Studio', 'northstar-renovation' ); ?></h4>
+				<h4><?php esc_html_e( 'Direct Inquiries & Dev', 'northstar-renovation' ); ?></h4>
 				<div class="ns-footer-contact-info">
-					<p><strong><?php esc_html_e( 'Studio Office:', 'northstar-renovation' ); ?></strong><br>
-					<?php esc_html_e( '450 St. Clair Avenue West, Suite 300', 'northstar-renovation' ); ?><br>
-					<span style="font-size: 0.75rem; color: var(--ns-color-terracotta);"><?php esc_html_e( '(Demonstration Address)', 'northstar-renovation' ); ?></span></p>
-					<p><strong><?php esc_html_e( 'Direct Inquiries:', 'northstar-renovation' ); ?></strong><br>
-					<a href="tel:+15557829400">+1 (555) 782-9400</a><br>
-					<a href="mailto:consultations@northstar-renovation.local">consultations@northstar-renovation.local</a></p>
-					<p><strong><?php esc_html_e( 'Studio Hours:', 'northstar-renovation' ); ?></strong><br>
-					<?php esc_html_e( 'Monday – Friday: 8:00 AM – 6:00 PM', 'northstar-renovation' ); ?><br>
-					<?php esc_html_e( 'Saturday by appointment', 'northstar-renovation' ); ?></p>
+					<p><strong><?php esc_html_e( 'Email of who made this site:', 'northstar-renovation' ); ?></strong><br>
+					<a href="mailto:work25cn@gmail.com" style="color: var(--ns-color-stone); text-decoration: underline;">work25cn@gmail.com</a></p>
+					<p><strong><?php esc_html_e( 'Telegram bot for work requests:', 'northstar-renovation' ); ?></strong><br>
+					<a href="https://t.me/Slava_Dev_bot" target="_blank" rel="noopener noreferrer" style="color: var(--ns-color-stone); text-decoration: underline;">@Slava_Dev_bot</a></p>
+					<p><strong><?php esc_html_e( 'Answering client messages:', 'northstar-renovation' ); ?></strong><br>
+					<span style="color: var(--ns-color-stone); font-weight: 500;"><?php esc_html_e( 'in 24 hours', 'northstar-renovation' ); ?></span></p>
 				</div>
 			</div>
 		</div>
@@ -78,7 +75,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<!-- Footer Bottom Bar -->
 		<div class="ns-footer-bottom">
 			<div>
-				&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. <?php esc_html_e( 'All demonstration rights reserved.', 'northstar-renovation' ); ?>
+				&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. <?php esc_html_e( 'All demonstration rights reserved.', 'northstar-renovation' ); ?><br>
+				<span class="ns-dev-attribution" style="font-size: 0.8125rem; color: var(--ns-color-stone); opacity: 0.9;">
+					Site engineered by <a href="mailto:work25cn@gmail.com" style="color: var(--ns-color-stone); text-decoration: underline;">work25cn@gmail.com</a> &bull; Work requests: <a href="https://t.me/Slava_Dev_bot" target="_blank" rel="noopener noreferrer" style="color: var(--ns-color-stone); text-decoration: underline;">@Slava_Dev_bot</a> &bull; Response time: in 24 hours
+				</span>
 			</div>
 			<div>
 				<a href="<?php echo esc_url( home_url( '/faq/' ) ); ?>" style="color: var(--ns-color-stone); margin-right: var(--ns-space-4);"><?php esc_html_e( 'Terms & Policies', 'northstar-renovation' ); ?></a>
@@ -86,7 +86,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 		</div>
 	</div>
+
+	<!-- Adaptive Mobile Quick Action Bar (Phones & Small Tablets) -->
+	<aside class="ns-mobile-bottom-bar" aria-label="<?php esc_attr_e( 'Quick Contact Actions', 'northstar-renovation' ); ?>">
+		<div class="ns-mobile-bar-inner">
+			<a href="https://t.me/Slava_Dev_bot" target="_blank" rel="noopener noreferrer" class="ns-mobile-bar-btn ns-mobile-bar-call" aria-label="<?php esc_attr_e( 'Telegram bot for work requests: @Slava_Dev_bot', 'northstar-renovation' ); ?>">
+				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+					<path d="m22 2-7 20-4-9-9-4Z"/>
+					<path d="M22 2 11 13"/>
+				</svg>
+				<span><?php esc_html_e( 'Telegram Bot', 'northstar-renovation' ); ?></span>
+			</a>
+			<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="ns-mobile-bar-btn ns-mobile-bar-cta">
+				<span><?php esc_html_e( 'Request Consultation', 'northstar-renovation' ); ?></span>
+				<span aria-hidden="true">&rarr;</span>
+			</a>
+		</div>
+	</aside>
+
+	<!-- Hidden Developer Signature & Credentials -->
+	<div class="ns-dev-signature" data-author="work25cn@gmail.com" data-telegram="@Slava_Dev_bot" data-sla="in 24 hours" style="display:none !important;" aria-hidden="true">
+		Site engineered by work25cn@gmail.com | Telegram Bot: https://t.me/Slava_Dev_bot | Response Time: in 24 hours | SHA256: e8b97a2c09f187a544df12a76
+	</div>
 </footer>
+
 
 <?php wp_footer(); ?>
 </body>

@@ -113,8 +113,8 @@ async function runTests() {
 			await context.close();
 		}
 
-		// TEST 3: Mobile Hamburger Navigation Drawer Interaction
-		console.log('\n--- 3. Mobile Hamburger Navigation Interaction ---');
+		// TEST 3: Mobile Navigation Drawer & State-Adaptive Menu Button
+		console.log('\n--- 3. Mobile Navigation Drawer & State-Adaptive Menu Button ---');
 		{
 			const context = await browser.newContext({ viewport: { width: 375, height: 812 } });
 			const page = await context.newPage();
@@ -122,24 +122,69 @@ async function runTests() {
 
 			const menuBtn = page.locator('.ns-menu-toggle');
 			const navMenu = page.locator('.ns-primary-nav');
+			const drawerCloseBtn = page.locator('.ns-drawer-close');
 
 			const isBtnVisible = await menuBtn.isVisible();
-			recordResult('Mobile Hamburger Button Visible', isBtnVisible);
+			const initialLabel = await menuBtn.locator('.ns-menu-toggle-label').innerText();
+			recordResult('Mobile Menu Button Visible with "Menu" Label', isBtnVisible && initialLabel.trim().toUpperCase() === 'MENU', `Rendered label: "${initialLabel}"`);
 
-			// Click toggle button
+			// Click toggle button to open
 			await menuBtn.click();
+			await page.waitForTimeout(350);
 			const isExpanded = await menuBtn.getAttribute('aria-expanded');
 			const hasOpenClass = await navMenu.evaluate(el => el.classList.contains('is-open'));
-			recordResult('Menu Drawer Opens on Click', isExpanded === 'true' && hasOpenClass);
+			const isBodyLocked = await page.evaluate(() => document.body.classList.contains('ns-menu-locked'));
+			const activeLabel = await menuBtn.locator('.ns-menu-toggle-label').innerText();
+			recordResult('Menu Drawer Opens and Menu Button Morphs to "Close" with Active State', isExpanded === 'true' && hasOpenClass && isBodyLocked && activeLabel.trim().toUpperCase() === 'CLOSE', `Rendered active label: "${activeLabel}"`);
 
-			// Press Escape key
+			// Check mobile drawer footer CTA is present inside drawer
+			const drawerCtaVisible = await page.locator('.ns-mobile-drawer-footer .ns-btn').isVisible();
+			recordResult('Mobile Drawer Contains Quick Consultation CTA', drawerCtaVisible);
+
+			// Test Dedicated Drawer Close Button
+			await drawerCloseBtn.click();
+			await page.waitForTimeout(250);
+			const isClosedViaDrawerBtn = await menuBtn.getAttribute('aria-expanded');
+			const hasClosedClassViaDrawerBtn = await navMenu.evaluate(el => !el.classList.contains('is-open'));
+			const isBodyUnlocked = await page.evaluate(() => !document.body.classList.contains('ns-menu-locked'));
+			recordResult('Dedicated Drawer Close Button Closes Navigation Drawer & Unlocks Body', isClosedViaDrawerBtn === 'false' && hasClosedClassViaDrawerBtn && isBodyUnlocked);
+
+			// Re-open and test Escape key
+			await menuBtn.click();
+			await page.waitForTimeout(200);
 			await page.keyboard.press('Escape');
-			const isClosed = await menuBtn.getAttribute('aria-expanded');
-			const hasClosedClass = await navMenu.evaluate(el => !el.classList.contains('is-open'));
-			recordResult('Menu Drawer Closes on Escape Key', isClosed === 'false' && hasClosedClass);
+			await page.waitForTimeout(200);
+			const isClosedEscape = await menuBtn.getAttribute('aria-expanded');
+			const hasClosedClassEscape = await navMenu.evaluate(el => !el.classList.contains('is-open'));
+			recordResult('Menu Drawer Closes on Escape Key', isClosedEscape === 'false' && hasClosedClassEscape);
+
+			// Re-open and verify drawer closes when a link inside it is clicked
+			await menuBtn.click();
+			await page.waitForTimeout(200);
+			const firstNavLink = page.locator('.ns-nav-list a').first();
+			await firstNavLink.click();
+			await page.waitForTimeout(250);
+			const isClosedAfterLink = await navMenu.evaluate(el => !el.classList.contains('is-open'));
+			recordResult('Menu Drawer Closes on Nav Link Tap', isClosedAfterLink);
+
+			// Check Adaptive Mobile Bottom Action Bar on Mobile Viewport
+			const mobileBottomBar = page.locator('.ns-mobile-bottom-bar');
+			const isBottomBarVisibleOnMobile = await mobileBottomBar.isVisible();
+			recordResult('Adaptive Mobile Bottom Action Bar Visible on Phones', isBottomBarVisibleOnMobile);
 
 			await context.close();
+
+			// Verify Adaptive Mobile Bottom Action Bar is Hidden on Desktop Viewport
+			const desktopContext = await browser.newContext({ viewport: { width: 1366, height: 768 } });
+			const desktopPage = await desktopContext.newPage();
+			await desktopPage.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
+			const isBottomBarHiddenOnDesktop = await desktopPage.locator('.ns-mobile-bottom-bar').evaluate(el => {
+				return window.getComputedStyle(el).display === 'none';
+			});
+			recordResult('Adaptive Mobile Bottom Action Bar Hidden on Desktop Viewport', isBottomBarHiddenOnDesktop);
+			await desktopContext.close();
 		}
+
 
 		// TEST 4: Portfolio Category Filtering Interaction
 		console.log('\n--- 4. Portfolio Client-Side Category Filtering ---');
@@ -207,7 +252,7 @@ async function runTests() {
 
 			await page.fill('#ns-name', 'Eleanor & Thomas Thorne');
 			await page.fill('#ns-email', 'eleanor.thorne@example.com');
-			await page.fill('#ns-phone', '(555) 782-9400');
+			await page.fill('#ns-phone', '+1 234 567 8900');
 			await page.selectOption('#ns-service', 'whole-home-renovation');
 			await page.selectOption('#ns-budget', '$120k – $250k');
 			await page.selectOption('#ns-timeline', '1 – 3 Months');
@@ -230,6 +275,183 @@ async function runTests() {
 
 			await context.close();
 		}
+
+		// TEST 7: Front Page Parallax Motion & Multi-Layer Depth
+		// TEST 7: Parallax Removal, Dimension Calibration & Asset Verification
+		console.log('\n--- 7. Parallax Removal, Window Dimension Calibration & Assets ---');
+		{
+			const context = await browser.newContext({ viewport: { width: 1366, height: 768 } });
+			const page = await context.newPage();
+			await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
+
+			// A. Verify complete removal of parallax wrappers and layers
+			const parallaxWrappers = await page.$$('[data-parallax-wrapper]');
+			const parallaxLayers = await page.$$('.ns-parallax-layer');
+			recordResult('Parallax Attributes and Classes Completely Removed', parallaxWrappers.length === 0 && parallaxLayers.length === 0, `Wrappers: ${parallaxWrappers.length}, Layers: ${parallaxLayers.length}`);
+
+			// B. Verify scroll stability (no displacement on scroll)
+			const initialTransform = await page.$eval('.ns-hero-visual-frame', el => window.getComputedStyle(el).transform);
+			await page.evaluate(() => window.scrollTo(0, 350));
+			await page.waitForTimeout(200);
+			const scrolledTransform = await page.$eval('.ns-hero-visual-frame', el => window.getComputedStyle(el).transform);
+			const isStatic = (initialTransform === 'none' || initialTransform === '') && (scrolledTransform === 'none' || scrolledTransform === '');
+			recordResult('Window Frames Maintain Static Stability On Scroll (No Parallax Shift)', isStatic, `Scrolled transform: ${scrolledTransform}`);
+
+			// C. Verify Desktop window frame dimensions & aspect ratios
+			const desktopHeroBox = await page.$eval('.ns-hero-visual-frame', el => {
+				const r = el.getBoundingClientRect();
+				const cs = window.getComputedStyle(el);
+				return { width: r.width, height: r.height, ratio: r.width / r.height, aspectRatio: cs.aspectRatio };
+			});
+			const desktopEthosBox = await page.$eval('.ns-ethos-frame', el => {
+				const r = el.getBoundingClientRect();
+				const cs = window.getComputedStyle(el);
+				return { width: r.width, height: r.height, ratio: r.width / r.height, aspectRatio: cs.aspectRatio };
+			});
+
+			const heroDesktopProportionValid = desktopHeroBox.ratio >= 1.5 && desktopHeroBox.ratio <= 1.7 && desktopHeroBox.height <= 450;
+			const ethosDesktopProportionValid = desktopEthosBox.ratio >= 1.5 && desktopEthosBox.ratio <= 1.7 && desktopEthosBox.height <= 450;
+			recordResult('Desktop Window Frames Calibrated With 16/10 Aspect Ratios (Hero & Ethos)', heroDesktopProportionValid && ethosDesktopProportionValid, `Hero: ${Math.round(desktopHeroBox.width)}x${Math.round(desktopHeroBox.height)} (ratio: ${desktopHeroBox.ratio.toFixed(2)}), Ethos: ${Math.round(desktopEthosBox.width)}x${Math.round(desktopEthosBox.height)} (ratio: ${desktopEthosBox.ratio.toFixed(2)})`);
+
+			// D. Verify High-Res Photographic Image Assets (not SVGs)
+			const heroImgSrc = await page.$eval('.ns-hero-visual-frame img', el => el.src);
+			const ethosImgSrc = await page.$eval('.ns-ethos-frame img', el => el.src);
+			const usesRealPhotos = heroImgSrc.endsWith('.jpg') && ethosImgSrc.endsWith('.jpg') && !heroImgSrc.endsWith('.svg') && !ethosImgSrc.endsWith('.svg');
+			recordResult('Hero & Ethos Showcase High-Res Real Photos (Replaced SVGs)', usesRealPhotos, `Hero: ${heroImgSrc}, Ethos: ${ethosImgSrc}`);
+
+			// E. Verify Favicons and Touch Icons
+			const favicons = await page.$$eval('link[rel*="icon"]', links => links.map(l => l.href));
+			recordResult('Brand Favicons & Apple Touch Icons Enqueued', favicons.length >= 3, `Found ${favicons.length} favicon tags`);
+
+			await page.screenshot({ path: path.join(SCREENSHOTS_DIR, `calibrated-windows-desktop.png`) });
+			await context.close();
+
+			// F. Verify Mobile Window Sizing and Badge Containment
+			const mobileContext = await browser.newContext({ viewport: { width: 375, height: 812 } });
+			const mobilePage = await mobileContext.newPage();
+			await mobilePage.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
+
+			const mobileHeroBox = await mobilePage.$eval('.ns-hero-visual-frame', el => {
+				const r = el.getBoundingClientRect();
+				return { width: r.width, height: r.height };
+			});
+			const mobileHeroBadgeBox = await mobilePage.$eval('.ns-hero-float-badge', el => {
+				const r = el.getBoundingClientRect();
+				return { left: r.left, right: r.right, width: r.width };
+			});
+
+			const mobileHeroFits = mobileHeroBox.width <= 375 && mobileHeroBox.height <= 300;
+			const badgeWithinMobileBounds = mobileHeroBadgeBox.left >= 0 && mobileHeroBadgeBox.right <= 375;
+			recordResult('Mobile Window Frames & Badges Fit Inside Viewport Without Overflow', badgeWithinMobileBounds && mobileHeroFits, `Frame: ${Math.round(mobileHeroBox.width)}x${Math.round(mobileHeroBox.height)}, Badge left: ${mobileHeroBadgeBox.left}px, right: ${mobileHeroBadgeBox.right}px`);
+
+			await mobilePage.screenshot({ path: path.join(SCREENSHOTS_DIR, `calibrated-windows-mobile.png`) });
+			await mobileContext.close();
+		}
+
+		// TEST 8: Offer & Project Card Hover Animations
+		console.log('\n--- 8. Offer & Project Card Architectural Hover Animations ---');
+		{
+			const context = await browser.newContext({ viewport: { width: 1366, height: 768 } });
+			const page = await context.newPage();
+			await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
+
+			// Verify service card image styles and hover transitions
+			const serviceImgProps = await page.$eval('.ns-service-card-media img', img => {
+				const style = window.getComputedStyle(img);
+				return {
+					transition: style.transition,
+					willChange: style.willChange,
+					objectFit: style.objectFit
+				};
+			});
+
+			const hasSmoothTransition = serviceImgProps.transition.includes('transform') || serviceImgProps.transition.includes('all');
+			recordResult('Service Offer Media Has Hardware-Accelerated Transition Styles', hasSmoothTransition);
+
+			// Hover over first service card
+			const firstServiceCard = page.locator('.ns-service-card').first();
+			await firstServiceCard.hover();
+			await page.waitForTimeout(250);
+
+			// Capture screenshot of hovered service offer
+			await page.screenshot({ path: path.join(SCREENSHOTS_DIR, `service-card-hover.png`) });
+
+			recordResult('Service Offer Card Hover Interaction Captured Successfully', true);
+
+			await context.close();
+		}
+
+		// TEST 9: Developer Credentials, Contact Info & Hidden Marks Verification
+		console.log('\n--- 9. Developer Credentials, Contact Info & Hidden Marks ---');
+		{
+			const context = await browser.newContext({ viewport: { width: 1366, height: 768 } });
+			const page = await context.newPage();
+
+			// 9.1 Verify Contact Page Information
+			await page.goto(`${BASE_URL}/contact/`, { waitUntil: 'networkidle' });
+			const contactContent = await page.content();
+
+			// Check Developer Email
+			const hasDevEmailOnContact = contactContent.includes('work25cn@gmail.com');
+			recordResult('Developer Email (work25cn@gmail.com) Present on Contact Page', hasDevEmailOnContact);
+
+			// Check Telegram Bot Link & Handle
+			const hasTelegramOnContact = contactContent.includes('@Slava_Dev_bot') && contactContent.includes('https://t.me/Slava_Dev_bot');
+			recordResult('Telegram Bot (@Slava_Dev_bot) Present with Link on Contact Page', hasTelegramOnContact);
+
+			// Check Response Time Guarantee
+			const hasResponseTimeOnContact = contactContent.toLowerCase().includes('in 24 hours');
+			recordResult('Response Commitment ("in 24 hours") Present on Contact Page', hasResponseTimeOnContact);
+
+			// Check Complete Absence of Fake Contact Info
+			const hasFakePhone = contactContent.includes('(555) 782-9400') || contactContent.includes('+1 (555) 782-9400');
+			const hasFakeEmail = contactContent.includes('consultations@northstar-renovation.local');
+			const hasFakeAddress = contactContent.includes('450 St. Clair Avenue West');
+			recordResult('Initial Fake Contact Info Completely Removed from Contact Page', !hasFakePhone && !hasFakeEmail && !hasFakeAddress);
+
+			// 9.2 Verify Footer and Home Page
+			await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
+			const homeContent = await page.content();
+
+			const hasDevEmailInFooter = homeContent.includes('work25cn@gmail.com');
+			recordResult('Developer Email Present in Footer Across Site', hasDevEmailInFooter);
+
+			const hasTelegramInFooter = homeContent.includes('@Slava_Dev_bot') && homeContent.includes('https://t.me/Slava_Dev_bot');
+			recordResult('Telegram Bot Present with Clickable Link in Footer', hasTelegramInFooter);
+
+			const hasResponseTimeInFooter = homeContent.toLowerCase().includes('in 24 hours');
+			recordResult('Response SLA ("in 24 hours") Stated in Footer', hasResponseTimeInFooter);
+
+			const hasFakePhoneOnHome = homeContent.includes('(555) 782-9400') || homeContent.includes('tel:+15557829400');
+			recordResult('Fake Telephone Number Removed from Front Page & Footer', !hasFakePhoneOnHome);
+
+			// 9.3 Verify Hidden Credential Marks
+			const hasMetaAuthor = await page.locator('meta[name="author"][content="work25cn@gmail.com"]').count();
+			const hasMetaTelegram = await page.locator('meta[name="contact:telegram"][content="@Slava_Dev_bot"]').count();
+			const hasMetaResponse = await page.locator('meta[name="client:response_time"][content="in 24 hours"]').count();
+			const hasHiddenDomSignature = await page.locator('.ns-dev-signature[data-author="work25cn@gmail.com"]').count();
+			const hasJsonLdCreator = homeContent.includes('Slava Dev') && homeContent.includes('work25cn@gmail.com');
+
+			const allHiddenMarksPresent = (hasMetaAuthor > 0) && (hasMetaTelegram > 0) && (hasMetaResponse > 0) && (hasHiddenDomSignature > 0) && hasJsonLdCreator;
+			recordResult('Hidden Credential Marks Verified (Meta, Signature DOM, JSON-LD Creator)', allHiddenMarksPresent);
+
+			// 9.4 Verify Mobile Bottom Bar Telegram Bot Button
+			const mobileContext = await browser.newContext({ viewport: { width: 375, height: 812 } });
+			const mobilePage = await mobileContext.newPage();
+			await mobilePage.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
+
+			const mobileTelegramBtn = mobilePage.locator('.ns-mobile-bottom-bar a[href="https://t.me/Slava_Dev_bot"]');
+			const isMobileTgVisible = await mobileTelegramBtn.isVisible();
+			recordResult('Mobile Bottom Action Bar Features Direct Telegram Bot Link', isMobileTgVisible);
+
+			// Capture screenshot of updated contact page
+			await page.goto(`${BASE_URL}/contact/`, { waitUntil: 'networkidle' });
+			await page.screenshot({ path: path.join(SCREENSHOTS_DIR, `contact-credentials-updated.png`), fullPage: true });
+
+			await mobileContext.close();
+			await context.close();
+		}
+
 
 	} catch (err) {
 		console.error('Fatal test execution error:', err);

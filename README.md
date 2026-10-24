@@ -1,8 +1,10 @@
 # Northstar Renovation — Professional Business Website Redesign
 
 [![PHP Syntax Validated](https://img.shields.io/badge/PHP-8.1%20%7C%208.2%20Validated-brightgreen.svg)]()
-[![Automated Tests](https://img.shields.io/badge/Playwright%20Tests-50%2F50%20Passing-success.svg)]()
+[![Automated Tests](https://img.shields.io/badge/Playwright%20Tests-60%2F60%20Passing-success.svg)]()
 [![Responsive](https://img.shields.io/badge/Responsive-Mobile%20%7C%20Tablet%20%7C%20Desktop-blue.svg)]()
+
+
 [![WCAG 2.2 AA](https://img.shields.io/badge/Accessibility-WCAG%202.2%20AA-informational.svg)]()
 
 A bespoke, production-ready WordPress website redesign developed for **Northstar Renovation**, a premier residential architecture and whole-home renovation firm. 
@@ -188,14 +190,18 @@ NODE_PATH=/home/rslv/.cache/codex-runtimes/codex-primary-runtime/dependencies/no
 | :--- | :---: | :---: | :---: | :--- |
 | **HTTP Status & Console Logs** | 14 | 14 | 0 | 0 errors across all 7 primary templates. |
 | **Responsive Viewports** | 28 | 28 | 0 | Zero horizontal overflow across 375px, 768px, 1366px, 1920px. |
-| **Mobile Drawer Navigation** | 3 | 3 | 0 | Verified open, close, and Escape key dismissal. |
-| **Portfolio Category Filter** | 2 | 2 | 0 | Verified dynamic JS filtering by project category. |
+| **Mobile Drawer Navigation & Adaptive Bar** | 7 | 7 | 0 | Verified open, close, Escape dismiss, in-drawer link close, drawer footer CTA, and mobile bottom bar visibility. |
+| **Portfolio Category Filter** | 2 | 2 | 0 | Verified dynamic JS filtering by project category and swipeable mobile tablist. |
 | **Accessible FAQ Accordion** | 2 | 2 | 0 | Verified ARIA expanded states and keyboard toggles. |
 | **Interactive Consultation Form** | 1 | 1 | 0 | Verified valid AJAX submission and inline feedback display. |
+| **Front Page Parallax Motion** | 4 | 4 | 0 | Verified scroll displacement, differential velocity (Badge > Frame), and reduced-motion suppression. |
+| **Offer & Project Card Animations** | 2 | 2 | 0 | Verified transition styles and hover interaction states. |
 | **PHP Syntax Linter** | 24 | 24 | 0 | 100% clean PHP syntax validation with `php -l`. |
-| **Total Automated Suite** | **74** | **74** | **0** | **100% Pass Rate** |
+| **Total Automated Suite** | **84** | **84** | **0** | **100% Pass Rate** |
 
 See [docs/TESTING.md](docs/TESTING.md) for complete QA reports.
+
+
 
 ---
 

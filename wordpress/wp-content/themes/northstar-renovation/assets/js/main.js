@@ -16,6 +16,8 @@
 		initContactForm();
 	});
 
+
+
 	/**
 	 * 1. Header scroll elevation effect.
 	 */
@@ -39,31 +41,77 @@
 	 * 2. Accessible Mobile Navigation Menu.
 	 */
 	function initMobileMenu() {
-		var toggleBtn = document.querySelector('.ns-menu-toggle');
-		var navMenu   = document.querySelector('.ns-primary-nav');
+		var toggleBtn   = document.querySelector('.ns-menu-toggle');
+		var navMenu     = document.querySelector('.ns-primary-nav');
+		var drawerClose = document.querySelector('.ns-drawer-close');
+		var toggleLabel = toggleBtn ? toggleBtn.querySelector('.ns-menu-toggle-label') : null;
 		if (!toggleBtn || !navMenu) return;
 
-		toggleBtn.addEventListener('click', function () {
-			var isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-			toggleBtn.setAttribute('aria-expanded', !isExpanded);
-			navMenu.classList.toggle('is-open');
+		function openMenu() {
+			toggleBtn.setAttribute('aria-expanded', 'true');
+			toggleBtn.setAttribute('aria-label', 'Close navigation menu');
+			toggleBtn.classList.add('is-active');
+			navMenu.classList.add('is-open');
+			document.body.classList.add('ns-menu-locked');
+			if (toggleLabel) toggleLabel.textContent = 'Close';
+			var firstLink = navMenu.querySelector('a, button');
+			if (firstLink) firstLink.focus();
+		}
 
-			if (!isExpanded) {
-				// Focus first link in menu
-				var firstLink = navMenu.querySelector('a');
-				if (firstLink) firstLink.focus();
+		function closeMenu() {
+			toggleBtn.setAttribute('aria-expanded', 'false');
+			toggleBtn.setAttribute('aria-label', 'Open navigation menu');
+			toggleBtn.classList.remove('is-active');
+			navMenu.classList.remove('is-open');
+			document.body.classList.remove('ns-menu-locked');
+			if (toggleLabel) toggleLabel.textContent = 'Menu';
+		}
+
+		toggleBtn.addEventListener('click', function (e) {
+			e.preventDefault();
+			var isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+			if (isExpanded) {
+				closeMenu();
+				toggleBtn.focus();
+			} else {
+				openMenu();
 			}
+		});
+
+		if (drawerClose) {
+			drawerClose.addEventListener('click', function (e) {
+				e.preventDefault();
+				closeMenu();
+				toggleBtn.focus();
+			});
+		}
+
+		// Close drawer when any navigation link inside is clicked
+		var drawerLinks = navMenu.querySelectorAll('a');
+		drawerLinks.forEach(function (link) {
+			link.addEventListener('click', function () {
+				if (navMenu.classList.contains('is-open')) {
+					closeMenu();
+				}
+			});
 		});
 
 		// Close menu on Escape key
 		document.addEventListener('keydown', function (e) {
 			if (e.key === 'Escape' && navMenu.classList.contains('is-open')) {
-				toggleBtn.setAttribute('aria-expanded', 'false');
-				navMenu.classList.remove('is-open');
+				closeMenu();
 				toggleBtn.focus();
 			}
 		});
+
+		// Automatically close menu when expanding to desktop viewport
+		window.addEventListener('resize', function () {
+			if (window.innerWidth > 768 && navMenu.classList.contains('is-open')) {
+				closeMenu();
+			}
+		});
 	}
+
 
 	/**
 	 * 3. Client-Side Portfolio Category Filtering.
@@ -208,3 +256,5 @@
 		});
 	}
 })();
+
+

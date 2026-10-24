@@ -1,0 +1,15 @@
+/* TEAM */
+Developer & Lead Architect: Slava
+Email: work25cn@gmail.com
+Telegram: @Slava_Dev_bot
+Telegram URL: https://t.me/Slava_Dev_bot
+Response SLA: in 24 hours
+From: Global / Remote
+
+/* SITE */
+Last update: 2026/10/25
+Standards: HTML5, CSS3, JavaScript ES6+, PHP 8.0+, WordPress 6.7+
+Components: Custom Bespoke Responsive Theme (northstar-renovation), Custom Companion Plugin (northstar-site-core)
+Accessibility: WCAG 2.1 Level AA Compliant
+Performance: 100% Native Vanilla Stack (Zero Heavy JS Frameworks)
+Security: Nonce Verification, Honeypot Anti-Spam, Input Sanitization, Output Escaping

@@ -1,250 +1,103 @@
-# Production Deployment Guide — Northstar Renovation
+# Northstar Renovation — Production Deployment Guide
 
-This guide outlines the production deployment workflow, infrastructure requirements, security hardening, performance optimizations, and post-launch verification procedures for the **Northstar Renovation** WordPress website.
-
----
-
-## 1. Hosting Infrastructure Requirements
-
-| Component | Minimum Specification | Recommended Production Specification |
-| :--- | :--- | :--- |
-| **Operating System** | Linux (Ubuntu 22.04 LTS / Debian 12) | Ubuntu 24.04 LTS Server |
-| **Web Server** | Nginx 1.20+ or Apache 2.4+ with `mod_rewrite` | Nginx 1.24+ with HTTP/2 or HTTP/3 |
-| **PHP Runtime** | PHP 8.0 | PHP 8.2 or 8.3 with OPcache enabled |
-| **Database** | MySQL 5.7+ / MariaDB 10.4+ | MariaDB 10.11 LTS or MySQL 8.0 |
-| **Memory / CPU** | 1 vCPU / 2 GB RAM | 2+ vCPUs / 4 GB RAM with SSD storage |
-| **SSL/TLS** | TLS 1.2+ Certificate | Let's Encrypt automated TLS 1.3 |
+This guide details the procedure for packaging, staging, and deploying the **Northstar Renovation** custom WordPress theme and companion plugin to a production hosting environment.
 
 ---
 
-## 2. Server Provisioning & PHP Extensions
+## 1. Hosting Environment Prerequisites
 
-Ensure the following PHP modules are installed and enabled on the production server:
-```bash
-sudo apt update
-sudo apt install -y php8.2-fpm php8.2-mysql php8.2-curl php8.2-gd php8.2-mbstring \
-                    php8.2-xml php8.2-xmlrpc php8.2-zip php8.2-opcache php8.2-intl \
-                    php8.2-imagick php8.2-redis
+- **Server**: Nginx or Apache (with `mod_rewrite` enabled).
+- **PHP Version**: PHP 8.1 or PHP 8.2 (with `curl`, `mbstring`, `xml`, `gd`, `zip`, and `pdo_mysql` extensions).
+- **Database**: MySQL 8.0+ or MariaDB 10.5+.
+- **WordPress**: WordPress 6.4+ (Full Site Editing and Gutenberg block engine enabled).
+- **HTTPS**: Mandatory SSL/TLS certificate (Let's Encrypt or commercial TLS 1.3).
+- **Memory Limit**: Minimum 256MB PHP memory limit (`WP_MEMORY_LIMIT = '256M'`).
+
+---
+
+## 2. Directory Architecture & Artifact Mapping
+
+Upload the theme and plugin folders to the WordPress installation target:
+
+```text
+wp-content/
+├── themes/
+│   └── northstar-renovation/        <-- Active Custom Theme
+└── plugins/
+    └── northstar-site-core/         <-- Active Companion Plugin
 ```
 
-### Recommended PHP Configuration (`/etc/php/8.2/fpm/php.ini`):
-```ini
-upload_max_filesize = 64M
-post_max_size = 64M
-memory_limit = 256M
-max_execution_time = 180
-max_input_vars = 3000
-expose_php = Off
-
-; OPcache performance tuning
-opcache.enable = 1
-opcache.memory_consumption = 128
-opcache.interned_strings_buffer = 16
-opcache.max_accelerated_files = 10000
-opcache.revalidate_freq = 2
-opcache.fast_shutdown = 1
-```
+### Git / Version Control Integration
+To maintain the repository with standard WordPress configurations, ensure `.gitignore` excludes sensitive files (`wp-config.php`, `.env`, `/uploads/`, core `/wp-admin/`, and `/wp-includes/`).
 
 ---
 
-## 3. Directory Layout & File Permissions
+## 3. Step-by-Step Production Deployment
 
-Deploy the theme and companion plugin into their respective paths:
-- Theme: `/var/www/html/wp-content/themes/northstar-renovation/`
-- Plugin: `/var/www/html/wp-content/plugins/northstar-site-core/`
+### Step A: Deploy Companion Plugin First
+1. Compress or SFTP upload `wordpress/wp-content/plugins/northstar-site-core/` to `/wp-content/plugins/`.
+2. Navigate to WordPress Admin &rarr; **Plugins**.
+3. Locate **Northstar Site Core** and click **Activate**.
+4. Confirm Custom Post Types (`Projects`, `Services`, `Testimonials`) appear in the admin sidebar.
 
-### Applying Strict Security Permissions:
-```bash
-# Assign web server ownership
-sudo chown -R www-data:www-data /var/www/html
+### Step B: Deploy Custom Theme
+1. Upload `wordpress/wp-content/themes/northstar-renovation/` to `/wp-content/themes/`.
+2. Navigate to WordPress Admin &rarr; **Appearance &rarr; Themes**.
+3. Activate **Northstar Renovation**.
+4. Navigate to **Settings &rarr; Permalinks** and ensure **Post name** (`/%postname%/`) is selected, then click **Save Changes** to flush rewrite rules.
 
-# Directories: 755 (read, write, execute by owner; read/execute by others)
-sudo find /var/www/html -type d -exec chmod 755 {} \;
+### Step C: Configure Static Front Page & Blog Index
+1. Go to **Settings &rarr; Reading**.
+2. Select **A static page (select below)**:
+   - **Homepage**: Select "Home" (assigned to default Front Page template).
+   - **Posts page**: Select "Journal / Renovation Insights".
+3. Click **Save Changes**.
 
-# Files: 644 (read, write by owner; read-only by others)
-sudo find /var/www/html -type f -exec chmod 644 {} \;
+### Step D: Setup Primary Navigation Menu
+1. Go to **Appearance &rarr; Menus**.
+2. Create a new menu named `Primary Menu`.
+3. Add links:
+   - Services (`/services/`)
+   - Portfolio (`/portfolio/`)
+   - About Us (`/about/`)
+   - Process & FAQ (`/faq/`)
+   - Journal (`/blog/`)
+   - Contact (`/contact/`)
+4. Under **Menu Settings &rarr; Display location**, check **Primary Navigation**.
+5. Save the menu.
 
-# Lock down wp-config.php (read-only for owner/group)
-sudo chmod 600 /var/www/html/wp-config.php
-```
-
----
-
-## 4. `wp-config.php` Production Hardening
-
-Add the following security definitions to `wp-config.php` above the `/* That's all, stop editing! */` line:
-
-```php
-// Force SSL for administration
-define( 'FORCE_SSL_ADMIN', true );
-
-// Disable in-dashboard theme and plugin file editor
-define( 'DISALLOW_FILE_EDIT', true );
-
-// Prevent untrusted plugin and core updates from web UI if managed via CI/CD
-// define( 'DISALLOW_FILE_MODS', true );
-
-// Turn off public debug display; log errors privately
-define( 'WP_DEBUG', false );
-define( 'WP_DEBUG_LOG', false );
-define( 'WP_DEBUG_DISPLAY', false );
-@ini_set( 'display_errors', 0 );
-
-// Empty trash automatically every 14 days
-define( 'EMPTY_TRASH_DAYS', 14 );
-
-// Limit post revisions to prevent database bloat
-define( 'WP_POST_REVISIONS', 5 );
-
-// Use a custom database table prefix (set during installation)
-$table_prefix = 'ns_prod_';
-```
+### Step E: Configure Production Email (SMTP)
+The companion plugin dispatches consultation quote requests to the site administrator email via `wp_mail()`. To prevent emails landing in spam:
+1. Install an enterprise SMTP plugin (e.g. WP Mail SMTP or FluentSMTP).
+2. Configure credentials with an authenticated transactional email service (SendGrid, Postmark, AWS SES, or Google Workspace SMTP).
+3. Send a test message through the Contact page form and verify delivery to the project director's inbox.
 
 ---
 
-## 5. Web Server Configuration (Nginx)
+## 4. Production Hardening & Performance Optimization
 
-Below is an optimized, production-ready Nginx server block:
+### HTTP Cache Headers & Static Asset Compression
+Add the following directives to Nginx or Apache configuration:
 
 ```nginx
-server {
-    listen 80;
-    listen [::]:80;
-    server_name northstarrenovation.com www.northstarrenovation.com;
-    return 301 https://$server_name$request_uri;
-}
-
-server {
-    listen 443 ssl http2;
-    listen [::]:443 ssl http2;
-    server_name northstarrenovation.com www.northstarrenovation.com;
-
-    root /var/www/html;
-    index index.php index.html;
-
-    # SSL Certificates (managed via Certbot)
-    ssl_certificate /etc/letsencrypt/live/northstarrenovation.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/northstarrenovation.com/privkey.pem;
-    ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ciphers HIGH:!aNULL:!MD5;
-
-    # Security Headers
-    add_header X-Content-Type-Options "nosniff" always;
-    add_header X-Frame-Options "SAMEORIGIN" always;
-    add_header X-XSS-Protection "1; mode=block" always;
-    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
-    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
-
-    # Gzip Compression
-    gzip on;
-    gzip_vary on;
-    gzip_proxied any;
-    gzip_comp_level 6;
-    gzip_types text/plain text/css text/xml application/json application/javascript application/rss+xml application/atom+xml image/svg+xml;
-
-    # Block access to hidden files (.git, .env, etc.)
-    location ~ /\. {
-        deny all;
-        access_log off;
-        log_not_found off;
-    }
-
-    # Block access to xmlrpc.php to prevent brute-force attacks
-    location = /xmlrpc.php {
-        deny all;
-        access_log off;
-        log_not_found off;
-    }
-
-    # Static Assets Caching (1 year)
-    location ~* \.(jpg|jpeg|png|gif|ico|css|js|webp|svg|woff2|woff|ttf)$ {
-        expires 365d;
-        add_header Cache-Control "public, no-transform";
-        access_log off;
-    }
-
-    # Standard WordPress Permalinks
-    location / {
-        try_files $uri $uri/ /index.php?$args;
-    }
-
-    # PHP-FPM FastCGI Handler
-    location ~ \.php$ {
-        include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/run/php/php8.2-fpm.sock;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        include fastcgi_params;
-    }
+# Nginx Asset Caching
+location ~* \.(css|js|svg|png|jpg|jpeg|gif|ico|woff2)$ {
+    expires 1y;
+    add_header Cache-Control "public, no-transform, immutable";
+    access_log off;
 }
 ```
 
----
-
-## 6. Email & Transactional SMTP Setup
-
-In production, relying on the host server's local `sendmail` / `mail()` binary often causes notification emails to end up in spam folders.
-
-### Setup Instructions:
-1. **Choose a Transactional SMTP Provider**:
-   - SendGrid, Postmark, Amazon SES, or Brevo (Sendinblue).
-2. **Install an SMTP Plugin**:
-   - Recommended: **WP Mail SMTP** or **Post SMTP**.
-3. **Configure DNS Records** on the domain registrar / Cloudflare:
-   - **SPF Record**: `v=spf1 include:sendgrid.net ~all`
-   - **DKIM Key**: Add CNAME records provided by your SMTP provider.
-   - **DMARC Record**: `v=DMARC1; p=quarantine; rua=mailto:dmarc-reports@northstarrenovation.com`
-4. **Test Delivery**:
-   - Navigate to the Contact page and submit a consultation request. Verify delivery to the administration inbox.
-
----
-
-## 7. Migration via WP-CLI
-
-When migrating a staged database to production:
-
-```bash
-# Export staged database
-wp db export staging-backup.sql
-
-# Import on production
-wp db import staging-backup.sql
-
-# Update URLs safely across serialized options and metadata
-wp search-replace 'http://127.0.0.1:8080' 'https://northstarrenovation.com' --all-tables
-
-# Flush rewrite rules
-wp rewrite flush --hard
-
-# Flush WordPress cache
-wp cache flush
+### Security Headers
+Ensure the following HTTP response headers are set:
+```http
+X-Frame-Options: SAMEORIGIN
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: geolocation=(), camera=(), microphone=()
 ```
 
----
-
-## 8. Backup & Disaster Recovery Strategy
-
-1. **Daily Database Backup**:
-   Automated cron job generating encrypted, compressed SQL dumps:
-   ```bash
-   0 2 * * * /usr/local/bin/wp db export --path=/var/www/html /backups/db-$(date +\%F).sql.gz
-   ```
-2. **Weekly Uploads Backup**:
-   Rsync `/var/www/html/wp-content/uploads` to off-site cloud storage (AWS S3, Google Cloud Storage, or Cloudflare R2).
-3. **Restoration Verification**:
-   Quarterly drills to test restoring backups into an isolated staging environment.
-
----
-
-## 9. Pre-Launch Checklist
-
-- [ ] All 50 Playwright tests passing cleanly.
-- [ ] Custom post types and project taxonomy registered and populated.
-- [ ] SSL certificate active with automatic renewal configured.
-- [ ] Permalinks set to `/%postname%/`.
-- [ ] Static homepage set to **Home** and blog posts set to **Insights**.
-- [ ] Primary navigation menu assigned to the **Primary Navigation** theme location.
-- [ ] SMTP email notifications tested and receiving inquiries.
-- [ ] Google Search Console and Bing Webmaster Tools verified.
-- [ ] XML sitemap generated (`/wp-sitemap.xml`).
-- [ ] Demo disclaimers reviewed and replaced with genuine company details.
-- [ ] 404 error page verified and functioning.
+### Content Delivery Network (CDN) & Asset Minification
+1. Point DNS through Cloudflare or CloudFront with HTTP/3 and Brotli compression enabled.
+2. The theme styles (`style.css`) and script (`assets/js/main.js`) are written with modern zero-dependency vanilla code, requiring no complex build pipeline to run at 60fps.
+3. For enterprise production scale, minify CSS and JS files using standard tools (e.g., `esbuild` or `terser`).

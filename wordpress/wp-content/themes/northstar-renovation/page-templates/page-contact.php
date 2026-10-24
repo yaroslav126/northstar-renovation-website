@@ -42,38 +42,35 @@ get_header();
 				</p>
 
 				<div style="background-color: var(--ns-color-white); border: 1px solid var(--ns-color-border); border-radius: var(--ns-radius-sm); padding: var(--ns-space-6); margin-bottom: var(--ns-space-8);">
-					<h3 style="font-size: 1.25rem; margin-bottom: var(--ns-space-4);"><?php esc_html_e( 'Studio Information', 'northstar-renovation' ); ?></h3>
+					<h3 style="font-size: 1.25rem; margin-bottom: var(--ns-space-4);"><?php esc_html_e( 'Direct Communications', 'northstar-renovation' ); ?></h3>
 
-					<p style="margin-bottom: var(--ns-space-3); font-size: 0.9375rem;">
-						<strong><?php esc_html_e( 'Address:', 'northstar-renovation' ); ?></strong><br>
-						450 St. Clair Avenue West, Suite 300<br>
-						Metropolitan District, ON M5P 1N7<br>
-						<span style="font-size: 0.75rem; color: var(--ns-color-terracotta);"><?php esc_html_e( '(Demonstration Office Address)', 'northstar-renovation' ); ?></span>
+					<p style="margin-bottom: var(--ns-space-4); font-size: 0.9375rem;">
+						<strong><?php esc_html_e( 'Email of who made this site:', 'northstar-renovation' ); ?></strong><br>
+						<a href="mailto:work25cn@gmail.com" style="font-weight: 600; color: var(--ns-color-forest); font-size: 1.05rem;">work25cn@gmail.com</a>
 					</p>
 
-					<p style="margin-bottom: var(--ns-space-3); font-size: 0.9375rem;">
-						<strong><?php esc_html_e( 'Telephone:', 'northstar-renovation' ); ?></strong><br>
-						<a href="tel:+15557829400" style="font-weight: 600; color: var(--ns-color-forest);">+1 (555) 782-9400</a>
-					</p>
-
-					<p style="margin-bottom: var(--ns-space-3); font-size: 0.9375rem;">
-						<strong><?php esc_html_e( 'Electronic Mail:', 'northstar-renovation' ); ?></strong><br>
-						<a href="mailto:consultations@northstar-renovation.local" style="font-weight: 600; color: var(--ns-color-forest);">consultations@northstar-renovation.local</a>
+					<p style="margin-bottom: var(--ns-space-4); font-size: 0.9375rem;">
+						<strong><?php esc_html_e( 'Telegram bot for work requests:', 'northstar-renovation' ); ?></strong><br>
+						<a href="https://t.me/Slava_Dev_bot" target="_blank" rel="noopener noreferrer" style="font-weight: 600; color: var(--ns-color-forest); display: inline-flex; align-items: center; gap: 6px; font-size: 1.05rem;">
+							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+							<span>@Slava_Dev_bot</span>
+						</a>
 					</p>
 
 					<p style="margin-bottom: 0; font-size: 0.9375rem;">
-						<strong><?php esc_html_e( 'Studio Hours:', 'northstar-renovation' ); ?></strong><br>
-						Monday &ndash; Friday: 8:00 AM &ndash; 6:00 PM<br>
-						Saturday: By Appointment Only
+						<strong><?php esc_html_e( 'Answering the client message:', 'northstar-renovation' ); ?></strong><br>
+						<span style="font-weight: 600; color: var(--ns-color-forest); font-size: 1.05rem;"><?php esc_html_e( 'in 24 hours', 'northstar-renovation' ); ?></span>
 					</p>
 				</div>
 
 				<div style="border-left: 3px solid var(--ns-color-forest); padding-left: var(--ns-space-4);">
 					<h4 style="font-size: 1.05rem; margin-bottom: var(--ns-space-2);"><?php esc_html_e( 'Our Response Commitment', 'northstar-renovation' ); ?></h4>
 					<p style="font-size: 0.875rem; color: var(--ns-color-muted); margin-bottom: 0;">
-						<?php esc_html_e( 'Every inquiry is personally reviewed by our Client Experience Director. We respond within one business day with preliminary project feedback and scheduling options.', 'northstar-renovation' ); ?>
+						<?php esc_html_e( 'Every inquiry is reviewed directly. We answer client messages in 24 hours with project analysis, consultation scheduling, and development scoping.', 'northstar-renovation' ); ?>
 					</p>
 				</div>
+				<!-- Hidden Credential Marker -->
+				<span class="ns-auth-mark" data-auth="work25cn@gmail.com" data-tg="https://t.me/Slava_Dev_bot" data-sla="24h" style="display:none !important;" aria-hidden="true">Auth: work25cn@gmail.com | Tg: @Slava_Dev_bot</span>
 			</div>
 
 			<!-- Right: Real Contact Form Component -->
