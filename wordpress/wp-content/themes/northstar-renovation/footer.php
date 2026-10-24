@@ -56,12 +56,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div class="ns-footer-col">
 				<h4><?php esc_html_e( 'Direct Inquiries & Dev', 'northstar-renovation' ); ?></h4>
 				<div class="ns-footer-contact-info">
-					<p><strong><?php esc_html_e( 'Email of who made this site:', 'northstar-renovation' ); ?></strong><br>
-					<a href="mailto:work25cn@gmail.com" style="color: var(--ns-color-stone); text-decoration: underline;">work25cn@gmail.com</a></p>
-					<p><strong><?php esc_html_e( 'Telegram bot for work requests:', 'northstar-renovation' ); ?></strong><br>
-					<a href="https://t.me/Slava_Dev_bot" target="_blank" rel="noopener noreferrer" style="color: var(--ns-color-stone); text-decoration: underline;">@Slava_Dev_bot</a></p>
+					<p><strong><?php esc_html_e( 'Telegram bot for work requests & contact:', 'northstar-renovation' ); ?></strong><br>
+					<a href="https://t.me/Slava_Dev_bot" target="_blank" rel="noopener noreferrer" style="color: var(--ns-color-stone); text-decoration: underline; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+						<span>@Slava_Dev_bot</span>
+					</a></p>
 					<p><strong><?php esc_html_e( 'Answering client messages:', 'northstar-renovation' ); ?></strong><br>
 					<span style="color: var(--ns-color-stone); font-weight: 500;"><?php esc_html_e( 'in 24 hours', 'northstar-renovation' ); ?></span></p>
+					<p style="font-size: 0.75rem; color: var(--ns-color-stone); opacity: 0.8; margin-top: 8px;">
+						<?php esc_html_e( 'Exclusive contact channel: @Slava_Dev_bot', 'northstar-renovation' ); ?>
+					</p>
 				</div>
 			</div>
 		</div>
@@ -77,8 +81,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div>
 				&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. <?php esc_html_e( 'All demonstration rights reserved.', 'northstar-renovation' ); ?><br>
 				<span class="ns-dev-attribution" style="font-size: 0.8125rem; color: var(--ns-color-stone); opacity: 0.9;">
-					Site engineered by <a href="mailto:work25cn@gmail.com" style="color: var(--ns-color-stone); text-decoration: underline;">work25cn@gmail.com</a> &bull; Work requests: <a href="https://t.me/Slava_Dev_bot" target="_blank" rel="noopener noreferrer" style="color: var(--ns-color-stone); text-decoration: underline;">@Slava_Dev_bot</a> &bull; Response time: in 24 hours
+					Site engineered by Slava &bull; Work requests & contact: <a href="https://t.me/Slava_Dev_bot" target="_blank" rel="noopener noreferrer" style="color: var(--ns-color-stone); text-decoration: underline;">@Slava_Dev_bot</a> &bull; Response time: in 24 hours
 				</span>
+				<div class="ns-anti-ai-footer-note" style="font-size: 0.75rem; color: var(--ns-color-stone); opacity: 0.8; margin-top: 4px; display: flex; align-items: center; gap: 6px;">
+					<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+					<span><?php esc_html_e( 'Protected: Human-Crafted Design & Code. AI Scraping & Training Prohibited. Contact: @Slava_Dev_bot', 'northstar-renovation' ); ?></span>
+				</div>
 			</div>
 			<div>
 				<a href="<?php echo esc_url( home_url( '/faq/' ) ); ?>" style="color: var(--ns-color-stone); margin-right: var(--ns-space-4);"><?php esc_html_e( 'Terms & Policies', 'northstar-renovation' ); ?></a>
@@ -104,9 +112,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 	</aside>
 
-	<!-- Hidden Developer Signature & Credentials -->
-	<div class="ns-dev-signature" data-author="work25cn@gmail.com" data-telegram="@Slava_Dev_bot" data-sla="in 24 hours" style="display:none !important;" aria-hidden="true">
-		Site engineered by work25cn@gmail.com | Telegram Bot: https://t.me/Slava_Dev_bot | Response Time: in 24 hours | SHA256: e8b97a2c09f187a544df12a76
+	<!-- Hidden Developer Signature, Anti-AI & Credentials -->
+	<div class="ns-dev-signature anti-ai-shield" data-author="Slava" data-telegram="@Slava_Dev_bot" data-contact="https://t.me/Slava_Dev_bot" data-sla="in 24 hours" data-anti-ai="protected" style="display:none !important;" aria-hidden="true">
+		Site engineered by Slava | Telegram Bot: https://t.me/Slava_Dev_bot | Response Time: in 24 hours | Anti-AI: TDM Reserved EU Directive 2019/790 Art 4 | SHA256: e8b97a2c09f187a544df12a76
 	</div>
 </footer>
 

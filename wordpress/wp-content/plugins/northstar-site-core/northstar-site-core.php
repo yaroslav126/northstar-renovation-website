@@ -6,7 +6,7 @@
  * Version:           1.0.0
  * Requires at least: 6.0
  * Requires PHP:      8.0
- * Author:            work25cn@gmail.com
+ * Author:            Slava (@Slava_Dev_bot)
  * Author URI:        https://t.me/Slava_Dev_bot
  * License:           GPL-2.0-or-later
  * Text Domain:       northstar-site-core
@@ -109,7 +109,7 @@ function northstar_core_handle_contact_submission() {
 	}
 
 	// 4. Construct Notification Email.
-	$admin_email = get_option( 'admin_email', 'work25cn@gmail.com' );
+	$admin_email = get_option( 'admin_email', 'inquiries@northstar-renovation.internal' );
 	$recipient   = apply_filters( 'northstar_consultation_recipient', $admin_email );
 
 	$subject = sprintf(

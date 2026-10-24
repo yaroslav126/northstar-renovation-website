@@ -28,6 +28,21 @@ if ( '/humans.txt' === $uri ) {
 	readfile( __DIR__ . '/../humans.txt' );
 	exit;
 }
+if ( '/robots.txt' === $uri ) {
+	header( 'Content-Type: text/plain; charset=UTF-8' );
+	readfile( __DIR__ . '/../robots.txt' );
+	exit;
+}
+if ( '/ai.txt' === $uri ) {
+	header( 'Content-Type: text/plain; charset=UTF-8' );
+	readfile( __DIR__ . '/../ai.txt' );
+	exit;
+}
+if ( '/tdm-reservation.json' === $uri ) {
+	header( 'Content-Type: application/json; charset=UTF-8' );
+	readfile( __DIR__ . '/../tdm-reservation.json' );
+	exit;
+}
 
 if ( strpos( $uri, '/assets/' ) === 0 ) {
 	$file = $theme_dir . $uri;

@@ -1,0 +1,18 @@
+# ai.txt - Machine Learning & AI Training Reservation File
+# Specification: /ai.txt protocol
+# Creator: Slava (@Slava_Dev_bot)
+# Contact: https://t.me/Slava_Dev_bot
+
+User-agent: *
+Disallow: /
+Allow: none
+
+# Legal Notice under EU Directive 2019/790 Article 4:
+# All human-created text, media, photography, layout, and software are strictly exempt from:
+# 1. Foundation model training
+# 2. Retrieval-augmented generation indexing without permission
+# 3. Fine-tuning datasets
+# 4. Commercial automated synthesis
+
+Contact: https://t.me/Slava_Dev_bot
+License: No-AI-Training

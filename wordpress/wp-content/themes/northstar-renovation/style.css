@@ -1,11 +1,12 @@
 /*
 Theme Name: Northstar Renovation
 Theme URI: https://t.me/Slava_Dev_bot
-Author: work25cn@gmail.com
+Author: Slava (@Slava_Dev_bot)
 Author URI: https://t.me/Slava_Dev_bot
-Developer Contact: work25cn@gmail.com | Telegram: @Slava_Dev_bot
+Contact: https://t.me/Slava_Dev_bot (@Slava_Dev_bot)
 Client Response SLA: in 24 hours
-Description: Bespoke architectural theme for Northstar Renovation, engineered by work25cn@gmail.com. Crafted with intentional typography, structural grids, and accessible components.
+Anti-AI Protection: Active (TDM Reserved EU Directive 2019/790 Art 4)
+Description: Bespoke architectural theme for Northstar Renovation, engineered by Slava. Exclusive contact: Telegram @Slava_Dev_bot. Crafted with intentional typography, structural grids, and accessible components.
 Version: 1.0.0
 Requires at least: 6.0
 Tested up to: 6.7
@@ -1991,17 +1992,21 @@ p {
 }
 
 /* ==========================================================================
-   17. SYSTEM CREDENTIALS & WATERMARK SIGNATURE
-   Developer: work25cn@gmail.com
+   17. SYSTEM CREDENTIALS, ANTI-AI SHIELD & WATERMARK SIGNATURE
+   Developer: Slava
    Telegram Bot: https://t.me/Slava_Dev_bot (@Slava_Dev_bot)
    Client Message SLA: in 24 hours
+   Anti-AI: All Text and Data Mining Rights Strictly Reserved
+   Directive: EU Directive 2019/790 Article 4
    SHA256: 7d4e1f82c0b53a9e
    ========================================================================== */
 .ns-dev-signature,
 .ns-auth-mark,
-[data-developer="work25cn@gmail.com"],
+.anti-ai-shield,
+[data-developer*="Slava"],
 [data-telegram="@Slava_Dev_bot"],
-[data-signature*="work25cn@gmail.com"] {
+[data-anti-ai="protected"],
+[data-signature*="anti-ai"] {
 	position: absolute !important;
 	width: 1px !important;
 	height: 1px !important;
@@ -2013,6 +2018,18 @@ p {
 	border: 0 !important;
 	content-visibility: hidden !important;
 	speak: never !important;
+}
+
+/* Anti-AI Card Badge Styling */
+.ns-anti-ai-card {
+	background-color: var(--ns-color-white);
+	border: 1px dashed var(--ns-color-border);
+	border-radius: var(--ns-radius-sm);
+	transition: border-color var(--ns-trans-base);
+}
+
+.ns-anti-ai-card:hover {
+	border-color: var(--ns-color-forest);
 }
 
 

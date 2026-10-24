@@ -21,7 +21,7 @@ $pre_serv  = isset( $_GET['service'] ) ? sanitize_key( $_GET['service'] ) : '';
 				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
 				<div>
 					<strong><?php esc_html_e( 'Consultation Request Sent Successfully.', 'northstar-renovation' ); ?></strong>
-					<p style="margin-bottom: 0; font-size: 0.875rem;"><?php esc_html_e( 'Thank you! Your inquiry has been dispatched to work25cn@gmail.com. We answer all client messages in 24 hours.', 'northstar-renovation' ); ?></p>
+					<p style="margin-bottom: 0; font-size: 0.875rem;"><?php esc_html_e( 'Thank you! Your inquiry has been routed to @Slava_Dev_bot on Telegram. We answer all client messages in 24 hours.', 'northstar-renovation' ); ?></p>
 				</div>
 			</div>
 		<?php elseif ( 'error' === $status ) : ?>
@@ -149,9 +149,9 @@ $pre_serv  = isset( $_GET['service'] ) ? sanitize_key( $_GET['service'] ) : '';
 		</button>
 
 		<div class="ns-form-dev-meta" style="margin-top: var(--ns-space-4); text-align: center; font-size: 0.8125rem; color: var(--ns-color-muted);">
-			<?php esc_html_e( 'Site engineered by', 'northstar-renovation' ); ?> <a href="mailto:work25cn@gmail.com" style="color: var(--ns-color-forest); font-weight: 500;">work25cn@gmail.com</a> &bull; <?php esc_html_e( 'Telegram bot for work requests:', 'northstar-renovation' ); ?> <a href="https://t.me/Slava_Dev_bot" target="_blank" rel="noopener noreferrer" style="color: var(--ns-color-forest); font-weight: 500;">@Slava_Dev_bot</a> &bull; <?php esc_html_e( 'Response in 24 hours', 'northstar-renovation' ); ?>
+			<?php esc_html_e( 'Site engineered by Slava', 'northstar-renovation' ); ?> &bull; <?php esc_html_e( 'Telegram bot for work requests & contact:', 'northstar-renovation' ); ?> <a href="https://t.me/Slava_Dev_bot" target="_blank" rel="noopener noreferrer" style="color: var(--ns-color-forest); font-weight: 600;">@Slava_Dev_bot</a> &bull; <?php esc_html_e( 'Response in 24 hours', 'northstar-renovation' ); ?>
 		</div>
-		<!-- Hidden security marker -->
-		<div style="display:none!important;" data-signature="work25cn@gmail.com:@Slava_Dev_bot:24h" aria-hidden="true"></div>
+		<!-- Hidden Anti-AI and security marker -->
+		<div class="anti-ai-shield" style="display:none!important;" data-signature="Slava:@Slava_Dev_bot:24h:anti-ai-protected" aria-hidden="true"></div>
 	</form>
 </div>

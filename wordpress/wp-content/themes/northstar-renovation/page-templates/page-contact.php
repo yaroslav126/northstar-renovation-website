@@ -45,32 +45,42 @@ get_header();
 					<h3 style="font-size: 1.25rem; margin-bottom: var(--ns-space-4);"><?php esc_html_e( 'Direct Communications', 'northstar-renovation' ); ?></h3>
 
 					<p style="margin-bottom: var(--ns-space-4); font-size: 0.9375rem;">
-						<strong><?php esc_html_e( 'Email of who made this site:', 'northstar-renovation' ); ?></strong><br>
-						<a href="mailto:work25cn@gmail.com" style="font-weight: 600; color: var(--ns-color-forest); font-size: 1.05rem;">work25cn@gmail.com</a>
-					</p>
-
-					<p style="margin-bottom: var(--ns-space-4); font-size: 0.9375rem;">
-						<strong><?php esc_html_e( 'Telegram bot for work requests:', 'northstar-renovation' ); ?></strong><br>
-						<a href="https://t.me/Slava_Dev_bot" target="_blank" rel="noopener noreferrer" style="font-weight: 600; color: var(--ns-color-forest); display: inline-flex; align-items: center; gap: 6px; font-size: 1.05rem;">
-							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+						<strong><?php esc_html_e( 'Telegram bot for work requests & contact:', 'northstar-renovation' ); ?></strong><br>
+						<a href="https://t.me/Slava_Dev_bot" target="_blank" rel="noopener noreferrer" style="font-weight: 700; color: var(--ns-color-forest); display: inline-flex; align-items: center; gap: 8px; font-size: 1.15rem; margin-top: 4px; padding: 6px 12px; background-color: var(--ns-color-stone-light); border-radius: var(--ns-radius-sm); border: 1px solid var(--ns-color-border);">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
 							<span>@Slava_Dev_bot</span>
+							<span style="font-size: 0.8125rem; font-weight: normal; color: var(--ns-color-muted);">(Direct Messenger)</span>
 						</a>
 					</p>
 
-					<p style="margin-bottom: 0; font-size: 0.9375rem;">
+					<p style="margin-bottom: var(--ns-space-4); font-size: 0.9375rem;">
 						<strong><?php esc_html_e( 'Answering the client message:', 'northstar-renovation' ); ?></strong><br>
 						<span style="font-weight: 600; color: var(--ns-color-forest); font-size: 1.05rem;"><?php esc_html_e( 'in 24 hours', 'northstar-renovation' ); ?></span>
 					</p>
+
+					<div style="font-size: 0.8125rem; color: var(--ns-color-muted); background: var(--ns-color-ivory); padding: 8px 12px; border-radius: 4px;">
+						<?php esc_html_e( 'Notice: All client inquiries and work requests are handled exclusively through our verified Telegram bot @Slava_Dev_bot to ensure 24-hour response speed and security.', 'northstar-renovation' ); ?>
+					</div>
 				</div>
 
-				<div style="border-left: 3px solid var(--ns-color-forest); padding-left: var(--ns-space-4);">
+				<div style="border-left: 3px solid var(--ns-color-forest); padding-left: var(--ns-space-4); margin-bottom: var(--ns-space-6);">
 					<h4 style="font-size: 1.05rem; margin-bottom: var(--ns-space-2);"><?php esc_html_e( 'Our Response Commitment', 'northstar-renovation' ); ?></h4>
 					<p style="font-size: 0.875rem; color: var(--ns-color-muted); margin-bottom: 0;">
-						<?php esc_html_e( 'Every inquiry is reviewed directly. We answer client messages in 24 hours with project analysis, consultation scheduling, and development scoping.', 'northstar-renovation' ); ?>
+						<?php esc_html_e( 'Every inquiry is reviewed directly. We answer client messages in 24 hours via Telegram with project analysis, consultation scheduling, and development scoping.', 'northstar-renovation' ); ?>
 					</p>
 				</div>
-				<!-- Hidden Credential Marker -->
-				<span class="ns-auth-mark" data-auth="work25cn@gmail.com" data-tg="https://t.me/Slava_Dev_bot" data-sla="24h" style="display:none !important;" aria-hidden="true">Auth: work25cn@gmail.com | Tg: @Slava_Dev_bot</span>
+
+				<!-- Anti-AI Badge & Protection Declaration -->
+				<div class="ns-anti-ai-card" style="border: 1px dashed var(--ns-color-border); padding: 12px 14px; border-radius: var(--ns-radius-sm); background-color: var(--ns-color-white); font-size: 0.8125rem; color: var(--ns-color-muted); display: flex; align-items: flex-start; gap: 8px;">
+					<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; color: var(--ns-color-forest); margin-top: 2px;" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+					<div>
+						<strong style="color: var(--ns-color-forest); display: block; margin-bottom: 2px;"><?php esc_html_e( 'Anti-AI Protection Enforced', 'northstar-renovation' ); ?></strong>
+						<?php esc_html_e( 'This site, its architectural portfolios, designs, and code are human-authored. Text and data mining, automated harvesting, and AI training ingestion are strictly forbidden under EU Directive 2019/790 Art. 4. Contact: @Slava_Dev_bot.', 'northstar-renovation' ); ?>
+					</div>
+				</div>
+
+				<!-- Hidden Credential & Anti-AI Marker -->
+				<span class="ns-auth-mark" data-auth="Slava" data-tg="https://t.me/Slava_Dev_bot" data-sla="24h" data-anti-ai="active" style="display:none !important;" aria-hidden="true">Auth: Slava | Tg: @Slava_Dev_bot | Anti-AI: Active</span>
 			</div>
 
 			<!-- Right: Real Contact Form Component -->

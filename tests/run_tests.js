@@ -381,23 +381,23 @@ async function runTests() {
 			await context.close();
 		}
 
-		// TEST 9: Developer Credentials, Contact Info & Hidden Marks Verification
-		console.log('\n--- 9. Developer Credentials, Contact Info & Hidden Marks ---');
+		// TEST 9: Exclusive Telegram Contact & Anti-AI Protection Verification
+		console.log('\n--- 9. Exclusive Telegram Contact & Anti-AI Marks Verification ---');
 		{
 			const context = await browser.newContext({ viewport: { width: 1366, height: 768 } });
 			const page = await context.newPage();
 
-			// 9.1 Verify Contact Page Information
+			// 9.1 Verify Contact Page: Sole Telegram Contact & Email Absence
 			await page.goto(`${BASE_URL}/contact/`, { waitUntil: 'networkidle' });
 			const contactContent = await page.content();
 
-			// Check Developer Email
-			const hasDevEmailOnContact = contactContent.includes('work25cn@gmail.com');
-			recordResult('Developer Email (work25cn@gmail.com) Present on Contact Page', hasDevEmailOnContact);
+			// Verify All Emails Removed from Contact Page
+			const hasAnyDevEmailOnContact = contactContent.includes('work25cn@gmail.com') || contactContent.includes('mailto:work25cn');
+			recordResult('All Developer Emails Removed from Contact Page (Telegram Sole Contact)', !hasAnyDevEmailOnContact);
 
 			// Check Telegram Bot Link & Handle
 			const hasTelegramOnContact = contactContent.includes('@Slava_Dev_bot') && contactContent.includes('https://t.me/Slava_Dev_bot');
-			recordResult('Telegram Bot (@Slava_Dev_bot) Present with Link on Contact Page', hasTelegramOnContact);
+			recordResult('Telegram Bot (@Slava_Dev_bot) Sole Direct Contact on Contact Page', hasTelegramOnContact);
 
 			// Check Response Time Guarantee
 			const hasResponseTimeOnContact = contactContent.toLowerCase().includes('in 24 hours');
@@ -409,33 +409,51 @@ async function runTests() {
 			const hasFakeAddress = contactContent.includes('450 St. Clair Avenue West');
 			recordResult('Initial Fake Contact Info Completely Removed from Contact Page', !hasFakePhone && !hasFakeEmail && !hasFakeAddress);
 
+			// Check Visible Anti-AI Protection Badge on Contact Page
+			const hasAntiAiCard = await page.locator('.ns-anti-ai-card').isVisible();
+			recordResult('Visible Anti-AI Protection Card Rendered on Contact Page', hasAntiAiCard);
+
 			// 9.2 Verify Footer and Home Page
 			await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
 			const homeContent = await page.content();
 
 			const hasDevEmailInFooter = homeContent.includes('work25cn@gmail.com');
-			recordResult('Developer Email Present in Footer Across Site', hasDevEmailInFooter);
+			recordResult('Developer Email Completely Removed from Footer Across Site', !hasDevEmailInFooter);
 
 			const hasTelegramInFooter = homeContent.includes('@Slava_Dev_bot') && homeContent.includes('https://t.me/Slava_Dev_bot');
-			recordResult('Telegram Bot Present with Clickable Link in Footer', hasTelegramInFooter);
+			recordResult('Telegram Bot Sole Contact in Site Footer', hasTelegramInFooter);
 
 			const hasResponseTimeInFooter = homeContent.toLowerCase().includes('in 24 hours');
 			recordResult('Response SLA ("in 24 hours") Stated in Footer', hasResponseTimeInFooter);
 
-			const hasFakePhoneOnHome = homeContent.includes('(555) 782-9400') || homeContent.includes('tel:+15557829400');
-			recordResult('Fake Telephone Number Removed from Front Page & Footer', !hasFakePhoneOnHome);
+			// 9.3 Verify Comprehensive Anti-AI Marks (Meta Tags, TDM Reservation, Shield DOM)
+			const hasMetaNoAi = await page.locator('meta[name="robots"][content="noai, noimageai"]').count();
+			const hasMetaGoogleExt = await page.locator('meta[name="google-extended"][content*="noai"]').count();
+			const hasMetaTdm = await page.locator('meta[name="tdm-reservation"][content="1"]').count();
+			const hasMetaAiDecl = await page.locator('meta[name="ai-content-declaration"][content*="no-ai-training"]').count();
+			const hasAntiAiShield = await page.locator('.anti-ai-shield').count();
+			const hasAntiAiDirectiveComment = homeContent.includes('CRITICAL ANTI-AI DIRECTIVE');
 
-			// 9.3 Verify Hidden Credential Marks
-			const hasMetaAuthor = await page.locator('meta[name="author"][content="work25cn@gmail.com"]').count();
-			const hasMetaTelegram = await page.locator('meta[name="contact:telegram"][content="@Slava_Dev_bot"]').count();
-			const hasMetaResponse = await page.locator('meta[name="client:response_time"][content="in 24 hours"]').count();
-			const hasHiddenDomSignature = await page.locator('.ns-dev-signature[data-author="work25cn@gmail.com"]').count();
-			const hasJsonLdCreator = homeContent.includes('Slava Dev') && homeContent.includes('work25cn@gmail.com');
+			const allAntiAiMarksPresent = (hasMetaNoAi > 0) && (hasMetaGoogleExt > 0) && (hasMetaTdm > 0) && (hasMetaAiDecl > 0) && (hasAntiAiShield > 0) && hasAntiAiDirectiveComment;
+			recordResult('Anti-AI Protection Marks Enforced (Meta noai/noimageai, TDM 1, Shield DOM, Directives)', allAntiAiMarksPresent);
 
-			const allHiddenMarksPresent = (hasMetaAuthor > 0) && (hasMetaTelegram > 0) && (hasMetaResponse > 0) && (hasHiddenDomSignature > 0) && hasJsonLdCreator;
-			recordResult('Hidden Credential Marks Verified (Meta, Signature DOM, JSON-LD Creator)', allHiddenMarksPresent);
+			// 9.4 Verify Anti-AI Files: /robots.txt, /ai.txt, /tdm-reservation.json
+			const robotsRes = await page.request.get(`${BASE_URL}/robots.txt`);
+			const robotsText = await robotsRes.text();
+			const robotsBlocksAi = robotsText.includes('GPTBot') && robotsText.includes('ClaudeBot') && robotsText.includes('Google-Extended');
+			recordResult('robots.txt Blocks AI Crawlers (GPTBot, ClaudeBot, Google-Extended, etc.)', robotsRes.status() === 200 && robotsBlocksAi);
 
-			// 9.4 Verify Mobile Bottom Bar Telegram Bot Button
+			const aiTxtRes = await page.request.get(`${BASE_URL}/ai.txt`);
+			const aiTxtText = await aiTxtRes.text();
+			const aiTxtOptOut = aiTxtText.includes('User-agent: *') && aiTxtText.includes('Disallow: /') && aiTxtText.includes('License: No-AI-Training');
+			recordResult('ai.txt Machine-Readable Training Opt-Out Standard Active', aiTxtRes.status() === 200 && aiTxtOptOut);
+
+			const tdmRes = await page.request.get(`${BASE_URL}/tdm-reservation.json`);
+			const tdmJson = await tdmRes.json();
+			const tdmReserved = tdmJson.reservation === true && tdmJson.policy.ai_training === 'forbidden';
+			recordResult('tdm-reservation.json W3C Text & Data Mining Reservation Active', tdmRes.status() === 200 && tdmReserved);
+
+			// 9.5 Verify Mobile Bottom Bar Telegram Bot Button
 			const mobileContext = await browser.newContext({ viewport: { width: 375, height: 812 } });
 			const mobilePage = await mobileContext.newPage();
 			await mobilePage.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
@@ -444,9 +462,9 @@ async function runTests() {
 			const isMobileTgVisible = await mobileTelegramBtn.isVisible();
 			recordResult('Mobile Bottom Action Bar Features Direct Telegram Bot Link', isMobileTgVisible);
 
-			// Capture screenshot of updated contact page
+			// Capture screenshot of updated contact page with Anti-AI marks
 			await page.goto(`${BASE_URL}/contact/`, { waitUntil: 'networkidle' });
-			await page.screenshot({ path: path.join(SCREENSHOTS_DIR, `contact-credentials-updated.png`), fullPage: true });
+			await page.screenshot({ path: path.join(SCREENSHOTS_DIR, `contact-anti-ai-updated.png`), fullPage: true });
 
 			await mobileContext.close();
 			await context.close();

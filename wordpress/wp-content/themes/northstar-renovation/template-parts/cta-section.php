@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 		<p style="font-size: 0.8125rem; color: var(--ns-color-stone); opacity: 0.85;">
-			<?php esc_html_e( 'Direct developer contact: work25cn@gmail.com • Answering client messages in 24 hours.', 'northstar-renovation' ); ?>
+			<?php esc_html_e( 'Direct contact for work requests & inquiries: @Slava_Dev_bot (Telegram) • Answering client messages in 24 hours.', 'northstar-renovation' ); ?>
 		</p>
 	</div>
 </section>

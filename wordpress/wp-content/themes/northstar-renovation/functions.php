@@ -154,7 +154,7 @@ function northstar_render_seo_meta() {
 	<meta name="twitter:description" content="<?php echo esc_attr( $description ); ?>">
 	<meta name="twitter:image" content="<?php echo esc_url( $og_img ); ?>">
 
-	<!-- Schema.org JSON-LD Structured Data with Creator Attribution -->
+	<!-- Schema.org JSON-LD Structured Data with Creator Attribution & Anti-AI Notice -->
 	<script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
@@ -162,16 +162,17 @@ function northstar_render_seo_meta() {
 		"name": "Northstar Renovation",
 		"description": "Premium residential renovation, architectural remodeling, and bespoke craftsmanship.",
 		"url": "<?php echo esc_url( home_url( '/' ) ); ?>",
-		"email": "work25cn@gmail.com",
 		"sameAs": [
 			"https://t.me/Slava_Dev_bot"
 		],
 		"creator": {
 			"@type": "Person",
 			"name": "Slava Dev",
-			"email": "work25cn@gmail.com",
 			"url": "https://t.me/Slava_Dev_bot",
-			"description": "Full-stack WordPress engineer & UI/UX designer. Client response guarantee: in 24 hours."
+			"sameAs": [
+				"https://t.me/Slava_Dev_bot"
+			],
+			"description": "Full-stack WordPress engineer & UI/UX designer. Exclusive contact: Telegram @Slava_Dev_bot. All AI training and TDM rights strictly reserved."
 		},
 		"priceRange": "$$$$",
 		"knowsAbout": [
@@ -181,7 +182,7 @@ function northstar_render_seo_meta() {
 			"Interior Architectural Reconfiguration",
 			"Bespoke Millwork & Finish Carpentry"
 		],
-		"disambiguatingDescription": "Demonstration portfolio website for Northstar Renovation engineered by work25cn@gmail.com (@Slava_Dev_bot). Response time: in 24 hours."
+		"disambiguatingDescription": "Demonstration portfolio website for Northstar Renovation engineered by Slava. Exclusive contact: Telegram @Slava_Dev_bot. Response time: in 24 hours. Anti-AI protection enforced under EU Directive 2019/790 Art 4."
 	}
 	</script>
 	<?php
@@ -561,7 +562,7 @@ if ( ! function_exists( 'northstar_core_handle_contact_submission' ) ) {
 			exit;
 		}
 
-		$admin_email = get_option( 'admin_email', 'work25cn@gmail.com' );
+		$admin_email = get_option( 'admin_email', 'inquiries@northstar-renovation.internal' );
 		$subject     = '[New Quote Request] ' . $service . ' - ' . $full_name;
 		$message     = "New Quote Request from Northstar Website:\n\nName: $full_name\nEmail: $email\nPhone: $phone\nService: $service\nDetails:\n$project_scope\n";
 		$headers     = array( 'Content-Type: text/plain; charset=UTF-8', "Reply-To: $full_name <$email>" );
@@ -576,15 +577,19 @@ if ( ! function_exists( 'northstar_core_handle_contact_submission' ) ) {
 }
 
 /**
- * Developer Credentials & Attribution HTTP Headers.
- * Emits verification tokens pointing to site creator and SLA.
+ * Developer Credentials, Attribution & Anti-AI Protection HTTP Headers.
+ * Emits verification tokens pointing to site creator, Telegram, and Anti-AI TDM reservation.
  */
 function northstar_developer_credentials_headers() {
 	if ( ! headers_sent() ) {
-		header( 'X-Developed-By: work25cn@gmail.com' );
-		header( 'X-Work-Requests: https://t.me/Slava_Dev_bot (@Slava_Dev_bot)' );
+		header( 'X-Developed-By: Slava (Telegram: @Slava_Dev_bot)' );
+		header( 'X-Work-Requests: https://t.me/Slava_Dev_bot' );
+		header( 'X-Contact-Channel: Telegram-Only (@Slava_Dev_bot)' );
 		header( 'X-Response-SLA: in 24 hours' );
-		header( 'X-Developer-Signature: SHA256-Slava-Northstar-Dev-Credentials' );
+		header( 'X-Robots-Tag: noai, noimageai' );
+		header( 'X-TDM-Reservation: 1' );
+		header( 'X-Anti-AI: Protected; Training=Forbidden; EU-Directive-2019-790-Art-4; Contact=https://t.me/Slava_Dev_bot' );
+		header( 'X-Developer-Signature: SHA256-Slava-Northstar-AntiAI-2026' );
 	}
 }
 add_action( 'send_headers', 'northstar_developer_credentials_headers' );
