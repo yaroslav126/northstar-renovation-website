@@ -164,6 +164,62 @@ function add_query_arg( $key, $value = false, $url = '' ) {
 }
 function remove_query_arg( $keys, $url = '' ) { return $url; }
 
+if ( ! defined( 'MINUTE_IN_SECONDS' ) ) {
+	define( 'MINUTE_IN_SECONDS', 60 );
+}
+if ( ! defined( 'HOUR_IN_SECONDS' ) ) {
+	define( 'HOUR_IN_SECONDS', 3600 );
+}
+if ( ! defined( 'DAY_IN_SECONDS' ) ) {
+	define( 'DAY_IN_SECONDS', 86400 );
+}
+
+function _ns_load_transients() {
+	$file = __DIR__ . '/.ns_transients.json';
+	if ( file_exists( $file ) ) {
+		$data = json_decode( file_get_contents( $file ), true );
+		if ( is_array( $data ) ) {
+			return $data;
+		}
+	}
+	return array();
+}
+
+function _ns_save_transients( $transients ) {
+	$file = __DIR__ . '/.ns_transients.json';
+	file_put_contents( $file, json_encode( $transients ) );
+}
+
+function get_transient( $transient ) {
+	$transients = _ns_load_transients();
+	if ( isset( $transients[ $transient ] ) ) {
+		$item = $transients[ $transient ];
+		if ( 0 === $item['expires'] || $item['expires'] >= time() ) {
+			return $item['value'];
+		}
+		unset( $transients[ $transient ] );
+		_ns_save_transients( $transients );
+	}
+	return false;
+}
+
+function set_transient( $transient, $value, $expiration = 0 ) {
+	$transients = _ns_load_transients();
+	$transients[ $transient ] = array(
+		'value'   => $value,
+		'expires' => $expiration > 0 ? time() + $expiration : 0,
+	);
+	_ns_save_transients( $transients );
+	return true;
+}
+
+function delete_transient( $transient ) {
+	$transients = _ns_load_transients();
+	unset( $transients[ $transient ] );
+	_ns_save_transients( $transients );
+	return true;
+}
+
 function get_locale() { return 'en_US'; }
 function has_excerpt() { return false; }
 function get_the_excerpt() { return 'Architectural renovation case study and residential spatial transformation.'; }
@@ -273,6 +329,7 @@ if ( '/admin-post.php' === $uri || '/admin-ajax.php' === $uri ) {
 }
 
 // Route Pages
+do_action( 'send_headers' );
 $clean_path = rtrim( $uri, '/' );
 if ( '' === $clean_path ) {
 	include $theme_dir . '/front-page.php';

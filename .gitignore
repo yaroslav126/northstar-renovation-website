@@ -13,26 +13,51 @@ Thumbs.db
 *.swp
 *.swo
 *~
+*.sublime-project
+*.sublime-workspace
 
-# Logs and Databases
+# Sensitive Environment & Secrets Files
+.env
+.env.*
+*.env
+*.pem
+*.key
+*.pkcs12
+*.p12
+*.crt
+*.cert
+*.credentials
+credentials.json
+client_secret*.json
+
+# Logs, Dumps and Databases
 *.log
 *.sql
 *.sqlite
+*.sqlite3
+*.dump
+*.tar.gz
+*.zip
+*.bak
 
 # Node / NPM
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
 
 # WordPress Core (keep repository focused on custom theme and plugin)
 wp-config.php
+wp-config-*.php
 wp-content/uploads/
 wp-content/upgrade/
 wp-content/languages/
-wp-content/plugins/index.php
-wp-content/themes/index.php
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+wp-content/cache/
 
 # Local Test Artifacts
 tests/screenshots/*.png
 !tests/screenshots/.gitkeep
+tests/.ns_transients.json

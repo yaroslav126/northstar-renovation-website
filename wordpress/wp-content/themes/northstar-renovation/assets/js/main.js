@@ -219,6 +219,20 @@
 				var formData = new FormData(form);
 				formData.append('action', 'northstar_submit_quote');
 
+				function renderFeedback(type, text) {
+					while (feedbackArea.firstChild) {
+						feedbackArea.removeChild(feedbackArea.firstChild);
+					}
+					var alertBox = document.createElement('div');
+					alertBox.className = 'ns-form-alert ' + type;
+					alertBox.setAttribute('role', 'alert');
+					var p = document.createElement('p');
+					p.textContent = text;
+					alertBox.appendChild(p);
+					feedbackArea.appendChild(alertBox);
+					feedbackArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+				}
+
 				fetch(NorthstarData.ajaxUrl, {
 					method: 'POST',
 					body: formData,
@@ -234,23 +248,20 @@
 					submitBtn.textContent = origBtnText;
 
 					if (res.success) {
-						feedbackArea.innerHTML = '<div class="ns-form-alert success" role="alert"><p>' + (res.data.message || NorthstarData.i18n.successMessage) + '</p></div>';
+						renderFeedback('success', (res.data && res.data.message) ? res.data.message : NorthstarData.i18n.successMessage);
 						form.reset();
-						feedbackArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
 					} else {
 						var errorMsg = NorthstarData.i18n.errorMessage;
 						if (res.data && res.data.errors) {
 							errorMsg = Object.values(res.data.errors).join(' ');
 						}
-						feedbackArea.innerHTML = '<div class="ns-form-alert error" role="alert"><p>' + errorMsg + '</p></div>';
-						feedbackArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+						renderFeedback('error', errorMsg);
 					}
 				})
 				.catch(function () {
 					submitBtn.disabled = false;
 					submitBtn.textContent = origBtnText;
-					feedbackArea.innerHTML = '<div class="ns-form-alert error" role="alert"><p>' + NorthstarData.i18n.networkError + '</p></div>';
-					feedbackArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+					renderFeedback('error', NorthstarData.i18n.networkError);
 				});
 			}
 		});

@@ -557,15 +557,17 @@ if ( ! function_exists( 'northstar_core_handle_contact_submission' ) ) {
 		$service       = isset( $_POST['service'] ) ? sanitize_text_field( wp_unslash( $_POST['service'] ) ) : '';
 		$project_scope = isset( $_POST['project_scope'] ) ? sanitize_textarea_field( wp_unslash( $_POST['project_scope'] ) ) : '';
 
-		if ( empty( $full_name ) || empty( $email ) || ! is_email( $email ) || empty( $service ) || empty( $project_scope ) ) {
+		if ( empty( $full_name ) || strlen( $full_name ) > 100 || empty( $email ) || ! is_email( $email ) || empty( $service ) || empty( $project_scope ) || strlen( $project_scope ) > 5000 ) {
 			wp_safe_redirect( home_url( '/contact/?contact_status=error&err_code=validation_failed#contact-form' ) );
 			exit;
 		}
 
+		$safe_name   = str_replace( array( "\r", "\n", "%0a", "%0d" ), '', $full_name );
+		$safe_email  = str_replace( array( "\r", "\n", "%0a", "%0d" ), '', $email );
 		$admin_email = get_option( 'admin_email', 'inquiries@northstar-renovation.internal' );
-		$subject     = '[New Quote Request] ' . $service . ' - ' . $full_name;
-		$message     = "New Quote Request from Northstar Website:\n\nName: $full_name\nEmail: $email\nPhone: $phone\nService: $service\nDetails:\n$project_scope\n";
-		$headers     = array( 'Content-Type: text/plain; charset=UTF-8', "Reply-To: $full_name <$email>" );
+		$subject     = '[New Quote Request] ' . $service . ' - ' . $safe_name;
+		$message     = "New Quote Request from Northstar Website:\n\nName: $safe_name\nEmail: $safe_email\nPhone: $phone\nService: $service\nDetails:\n$project_scope\n";
+		$headers     = array( 'Content-Type: text/plain; charset=UTF-8', "Reply-To: $safe_name <$safe_email>" );
 
 		wp_mail( $admin_email, $subject, $message, $headers );
 
@@ -577,11 +579,23 @@ if ( ! function_exists( 'northstar_core_handle_contact_submission' ) ) {
 }
 
 /**
- * Developer Credentials, Attribution & Anti-AI Protection HTTP Headers.
- * Emits verification tokens pointing to site creator, Telegram, and Anti-AI TDM reservation.
+ * Security Hardening & Developer Credentials / Anti-AI Protection HTTP Headers.
+ * Emits defense-in-depth OWASP security headers alongside verification tokens
+ * pointing to site creator, Telegram (@Slava_Dev_bot), and Anti-AI TDM reservation.
  */
 function northstar_developer_credentials_headers() {
 	if ( ! headers_sent() ) {
+		// Defense-in-depth HTTP Security Headers
+		header( 'X-Frame-Options: SAMEORIGIN' );
+		header( 'X-Content-Type-Options: nosniff' );
+		header( 'X-XSS-Protection: 1; mode=block' );
+		header( 'Referrer-Policy: strict-origin-when-cross-origin' );
+		header( 'Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()' );
+		header( 'Cross-Origin-Opener-Policy: same-origin' );
+		header( 'Cross-Origin-Resource-Policy: same-origin' );
+		header( "Content-Security-Policy: default-src 'self' https:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https: fonts.googleapis.com; font-src 'self' data: https: fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:; frame-ancestors 'self';" );
+
+		// Developer Attribution & Anti-AI Protection Headers
 		header( 'X-Developed-By: Slava (Telegram: @Slava_Dev_bot)' );
 		header( 'X-Work-Requests: https://t.me/Slava_Dev_bot' );
 		header( 'X-Contact-Channel: Telegram-Only (@Slava_Dev_bot)' );

@@ -54,6 +54,16 @@ function northstar_core_handle_contact_submission() {
 		return;
 	}
 
+	// 1b. Rate Limiting Protection (Max 5 submissions per 10 minutes per IP).
+	$client_ip = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '127.0.0.1';
+	$rate_key  = 'ns_rate_' . md5( $client_ip );
+	$attempts  = (int) get_transient( $rate_key );
+	if ( $attempts >= 5 ) {
+		northstar_core_respond_error( 'rate_limited', __( 'Too many requests. Please wait 10 minutes before submitting another consultation inquiry.', 'northstar-site-core' ) );
+		return;
+	}
+	set_transient( $rate_key, $attempts + 1, 10 * 60 );
+
 	// 2. Anti-spam Honeypot Check (field should be empty).
 	if ( ! empty( $_POST['ns_website_verify'] ) ) {
 		// Silent exit for automated spambots.
@@ -75,10 +85,16 @@ function northstar_core_handle_contact_submission() {
 
 	if ( empty( $full_name ) || strlen( $full_name ) < 2 ) {
 		$errors['full_name'] = __( 'Please enter your full name.', 'northstar-site-core' );
+	} elseif ( strlen( $full_name ) > 100 ) {
+		$errors['full_name'] = __( 'Name exceeds maximum allowed length (100 characters).', 'northstar-site-core' );
 	}
 
 	if ( empty( $email ) || ! is_email( $email ) ) {
 		$errors['email'] = __( 'Please enter a valid email address.', 'northstar-site-core' );
+	}
+
+	if ( ! empty( $phone ) && strlen( $phone ) > 30 ) {
+		$errors['phone'] = __( 'Phone number is too long (maximum 30 characters).', 'northstar-site-core' );
 	}
 
 	$allowed_services = array(
@@ -97,6 +113,8 @@ function northstar_core_handle_contact_submission() {
 
 	if ( empty( $project_scope ) || strlen( $project_scope ) < 15 ) {
 		$errors['project_scope'] = __( 'Please describe your project (minimum 15 characters).', 'northstar-site-core' );
+	} elseif ( strlen( $project_scope ) > 5000 ) {
+		$errors['project_scope'] = __( 'Project scope exceeds maximum allowed length (5000 characters).', 'northstar-site-core' );
 	}
 
 	if ( ! $privacy_agreed ) {
@@ -108,7 +126,10 @@ function northstar_core_handle_contact_submission() {
 		return;
 	}
 
-	// 4. Construct Notification Email.
+	// 4. Construct Notification Email with CRLF Injection Mitigation.
+	$safe_name  = str_replace( array( "\r", "\n", "%0a", "%0d" ), '', $full_name );
+	$safe_email = str_replace( array( "\r", "\n", "%0a", "%0d" ), '', $email );
+
 	$admin_email = get_option( 'admin_email', 'inquiries@northstar-renovation.internal' );
 	$recipient   = apply_filters( 'northstar_consultation_recipient', $admin_email );
 
@@ -116,12 +137,12 @@ function northstar_core_handle_contact_submission() {
 		/* translators: 1: Service name, 2: Client name */
 		__( '[New Consultation Request] %1$s — %2$s', 'northstar-site-core' ),
 		ucwords( str_replace( '-', ' ', $service ) ),
-		$full_name
+		$safe_name
 	);
 
 	$message_body  = "New Consultation Request submitted via Northstar Renovation Website:\n\n";
-	$message_body .= "Client Name: " . $full_name . "\n";
-	$message_body .= "Email: " . $email . "\n";
+	$message_body .= "Client Name: " . $safe_name . "\n";
+	$message_body .= "Email: " . $safe_email . "\n";
 	$message_body .= "Telephone: " . ( ! empty( $phone ) ? $phone : 'Not provided' ) . "\n";
 	$message_body .= "Requested Service: " . ucwords( str_replace( '-', ' ', $service ) ) . "\n";
 	$message_body .= "Budget Tier: " . ( ! empty( $budget_tier ) ? $budget_tier : 'To be discussed' ) . "\n";
@@ -136,7 +157,7 @@ function northstar_core_handle_contact_submission() {
 
 	$headers = array(
 		'From: Northstar Renovation <no-reply@' . wp_parse_url( home_url(), PHP_URL_HOST ) . '>',
-		'Reply-To: ' . $full_name . ' <' . $email . '>',
+		'Reply-To: ' . $safe_name . ' <' . $safe_email . '>',
 		'Content-Type: text/plain; charset=UTF-8',
 	);
 
