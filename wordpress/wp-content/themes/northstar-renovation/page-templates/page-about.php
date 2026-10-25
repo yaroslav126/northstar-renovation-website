@@ -98,19 +98,19 @@ $team = function_exists( 'northstar_get_demo_team' ) ? northstar_get_demo_team()
 
 		<div class="ns-grid-4">
 			<?php foreach ( $team as $member ) : ?>
-				<div class="ns-service-card" style="text-align: center;">
-					<div style="aspect-ratio: 1/1; overflow: hidden; background-color: var(--ns-color-stone-light);">
-						<img src="<?php echo esc_url( $member['image'] ); ?>" alt="<?php echo esc_attr( $member['name'] ); ?>" loading="lazy" width="600" height="600" style="width: 100%; height: 100%; object-fit: cover;">
-					</div>
-					<div style="padding: var(--ns-space-5);">
-						<h3 style="font-size: 1.25rem; margin-bottom: 0.25rem;"><?php echo esc_html( $member['name'] ); ?></h3>
-						<span style="font-size: 0.8125rem; font-weight: 600; color: var(--ns-color-terracotta); display: block; margin-bottom: var(--ns-space-3);">
-							<?php echo esc_html( $member['role'] ); ?>
-						</span>
-						<p style="font-size: 0.875rem; color: var(--ns-color-muted); margin-bottom: 0;">
-							<?php echo esc_html( $member['bio'] ); ?>
-						</p>
-					</div>
+				<div class="ns-service-card" style="padding: var(--ns-space-6); display: flex; flex-direction: column; justify-content: flex-start; border-top: 3px solid var(--ns-color-forest); text-align: left;">
+					<span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ns-color-terracotta); margin-bottom: var(--ns-space-2);">
+						<?php echo esc_html( $member['discipline'] ?? __( 'Practice Discipline', 'northstar-renovation' ) ); ?>
+					</span>
+					<h3 style="font-size: 1.2rem; margin-bottom: 0.25rem; color: var(--ns-color-forest);">
+						<?php echo esc_html( $member['name'] ); ?>
+					</h3>
+					<span style="font-size: 0.8125rem; font-weight: 600; color: var(--ns-color-muted); display: block; margin-bottom: var(--ns-space-3);">
+						<?php echo esc_html( $member['role'] ); ?>
+					</span>
+					<p style="font-size: 0.875rem; color: var(--ns-color-muted); line-height: 1.6; margin-bottom: 0;">
+						<?php echo esc_html( $member['bio'] ); ?>
+					</p>
 				</div>
 			<?php endforeach; ?>
 		</div>

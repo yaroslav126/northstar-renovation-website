@@ -430,28 +430,28 @@ function northstar_get_demo_testimonials() {
 function northstar_get_demo_team() {
 	return array(
 		array(
-			'name'  => __( 'Arthur Pendelton, AIA', 'northstar-renovation' ),
-			'role'  => __( 'Founder & Principal Architect', 'northstar-renovation' ),
-			'bio'   => __( 'With 22 years specializing in residential conservation and modern extensions, Arthur bridges conceptual architectural vision with structural discipline and construction economics.', 'northstar-renovation' ),
-			'image' => NORTHSTAR_URI . '/assets/images/team-1.jpg',
+			'discipline' => __( 'Architecture & Conservation', 'northstar-renovation' ),
+			'name'       => __( 'Arthur Pendelton, AIA', 'northstar-renovation' ),
+			'role'       => __( 'Founder & Principal Architect', 'northstar-renovation' ),
+			'bio'        => __( 'With 22 years specializing in residential conservation and modern extensions, Arthur bridges conceptual architectural vision with structural discipline and construction economics.', 'northstar-renovation' ),
 		),
 		array(
-			'name'  => __( 'Elena Vance', 'northstar-renovation' ),
-			'role'  => __( 'Director of Interior Architecture', 'northstar-renovation' ),
-			'bio'   => __( 'Specializing in bespoke millwork, spatial acoustics, and tactile stone sourcing, Elena curates cohesive, serene material palettes tailored to client lifestyles.', 'northstar-renovation' ),
-			'image' => NORTHSTAR_URI . '/assets/images/team-2.jpg',
+			'discipline' => __( 'Interior Architecture', 'northstar-renovation' ),
+			'name'       => __( 'Elena Vance', 'northstar-renovation' ),
+			'role'       => __( 'Director of Interior Architecture', 'northstar-renovation' ),
+			'bio'        => __( 'Specializing in bespoke millwork, spatial acoustics, and tactile stone sourcing, Elena curates cohesive, serene material palettes tailored to client lifestyles.', 'northstar-renovation' ),
 		),
 		array(
-			'name'  => __( 'Marcus Thorne', 'northstar-renovation' ),
-			'role'  => __( 'Master Builder & Construction Lead', 'northstar-renovation' ),
-			'bio'   => __( 'A third-generation builder with red-seal certification, Marcus oversees all site supers, trade coordination, structural engineering, and finish quality control.', 'northstar-renovation' ),
-			'image' => NORTHSTAR_URI . '/assets/images/team-3.jpg',
+			'discipline' => __( 'Master Building Craft', 'northstar-renovation' ),
+			'name'       => __( 'Marcus Thorne', 'northstar-renovation' ),
+			'role'       => __( 'Master Builder & Construction Lead', 'northstar-renovation' ),
+			'bio'        => __( 'A third-generation builder with red-seal certification, Marcus oversees all site supers, trade coordination, structural engineering, and finish quality control.', 'northstar-renovation' ),
 		),
 		array(
-			'name'  => __( 'Claire Dubois', 'northstar-renovation' ),
-			'role'  => __( 'Client Experience & Project Director', 'northstar-renovation' ),
-			'bio'   => __( 'Claire serves as the single dedicated point of contact for homeowners, coordinating schedule transparency, permit logistics, and budget accounting.', 'northstar-renovation' ),
-			'image' => NORTHSTAR_URI . '/assets/images/team-4.jpg',
+			'discipline' => __( 'Project Governance', 'northstar-renovation' ),
+			'name'       => __( 'Claire Dubois', 'northstar-renovation' ),
+			'role'       => __( 'Client Experience & Project Director', 'northstar-renovation' ),
+			'bio'        => __( 'Claire serves as the single dedicated point of contact for homeowners, coordinating schedule transparency, permit logistics, and budget accounting.', 'northstar-renovation' ),
 		),
 	);
 }
