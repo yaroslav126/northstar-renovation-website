@@ -13,10 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header();
 
-// Fetch Services, Projects, Testimonials, FAQs
+// Fetch Services, Projects, FAQs
 $services     = function_exists( 'northstar_get_demo_services' ) ? northstar_get_demo_services() : array();
 $projects     = function_exists( 'northstar_get_demo_projects' ) ? northstar_get_demo_projects() : array();
-$testimonials = function_exists( 'northstar_get_demo_testimonials' ) ? northstar_get_demo_testimonials() : array();
 $faqs         = function_exists( 'northstar_get_demo_faqs' ) ? array_slice( northstar_get_demo_faqs(), 0, 4 ) : array();
 
 // Section 2: Prominent Visual Hero Section (includes Primary CTA, Secondary CTA, & Trust Bar)
@@ -214,28 +213,7 @@ get_template_part( 'template-parts/hero' );
 	</div>
 </section>
 
-<!-- Section 11: Demonstration Testimonials -->
-<section class="ns-section" aria-labelledby="testimonials-heading" style="background-color: var(--ns-color-white);">
-	<div class="ns-container">
-		<div class="ns-section-header text-center">
-			<span class="ns-section-eyebrow"><?php esc_html_e( 'Client Experiences', 'northstar-renovation' ); ?></span>
-			<h2 id="testimonials-heading"><?php esc_html_e( 'What Homeowners Say About Our Stewardship', 'northstar-renovation' ); ?></h2>
-			<p style="color: var(--ns-color-muted); font-size: 1.1rem; max-width: 60ch;">
-				<?php esc_html_e( 'Exemplary feedback illustrating homeowner satisfaction and our commitment to transparent renovation management.', 'northstar-renovation' ); ?>
-			</p>
-		</div>
-
-		<div class="ns-grid-3">
-			<?php
-			foreach ( $testimonials as $testimonial ) {
-				get_template_part( 'template-parts/testimonial-card', null, array( 'testimonial' => $testimonial ) );
-			}
-			?>
-		</div>
-	</div>
-</section>
-
-<!-- Section 12: Service Area Section -->
+<!-- Section 11: Service Area Section -->
 <section class="ns-section" aria-labelledby="service-area-heading">
 	<div class="ns-container">
 		<div class="ns-grid-2" style="align-items: center;">

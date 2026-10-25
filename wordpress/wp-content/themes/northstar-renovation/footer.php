@@ -73,7 +73,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<!-- Demonstration Content & Portfolio Notice -->
 		<div class="ns-footer-disclaimer-box" role="note">
 			<strong><?php esc_html_e( 'PORTFOLIO DEMONSTRATION NOTICE:', 'northstar-renovation' ); ?></strong>
-			<?php esc_html_e( 'Northstar Renovation is a fictional residential construction brand created as a professional website redesign demonstration. All project case studies, client reviews, architectural photography, team credentials, and demonstrated pricing tiers are illustrative demonstration assets and do not represent verified commercial claims.', 'northstar-renovation' ); ?>
+			<?php esc_html_e( 'Northstar Renovation is a fictional residential construction brand created as a professional website redesign demonstration. All project case studies, architectural photography, team credentials, and demonstrated pricing tiers are illustrative demonstration assets and do not represent verified commercial claims.', 'northstar-renovation' ); ?>
 		</div>
 
 		<!-- Footer Bottom Bar -->
