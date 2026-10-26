@@ -1,0 +1,38 @@
+{
+  "version": 2,
+  "functions": {
+    "api/*.php": {
+      "runtime": "vercel-php@0.9.0"
+    }
+  },
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "dest": "/wordpress/wp-content/themes/northstar-renovation/assets/$1"
+    },
+    {
+      "src": "/style.css",
+      "dest": "/wordpress/wp-content/themes/northstar-renovation/style.css"
+    },
+    {
+      "src": "/robots.txt",
+      "dest": "/robots.txt"
+    },
+    {
+      "src": "/humans.txt",
+      "dest": "/humans.txt"
+    },
+    {
+      "src": "/ai.txt",
+      "dest": "/ai.txt"
+    },
+    {
+      "src": "/tdm-reservation.json",
+      "dest": "/tdm-reservation.json"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.php"
+    }
+  ]
+}

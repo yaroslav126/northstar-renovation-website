@@ -6,10 +6,13 @@
  * theme templates, stylesheets, scripts, and server-side form handlers.
  */
 
-define( 'ABSPATH', __DIR__ . '/../wordpress/' );
+if ( ! defined( 'ABSPATH' ) ) {
+	$abs = realpath( __DIR__ . '/../wordpress' );
+	define( 'ABSPATH', ( $abs ? $abs : ( __DIR__ . '/../wordpress' ) ) . '/' );
+}
 
-$theme_dir = realpath( __DIR__ . '/../wordpress/wp-content/themes/northstar-renovation' );
-$plugin_dir = realpath( __DIR__ . '/../wordpress/wp-content/plugins/northstar-site-core' );
+$theme_dir  = realpath( __DIR__ . '/../wordpress/wp-content/themes/northstar-renovation' ) ?: ( __DIR__ . '/../wordpress/wp-content/themes/northstar-renovation' );
+$plugin_dir = realpath( __DIR__ . '/../wordpress/wp-content/plugins/northstar-site-core' ) ?: ( __DIR__ . '/../wordpress/wp-content/plugins/northstar-site-core' );
 
 // Static Asset Serving
 $uri = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
