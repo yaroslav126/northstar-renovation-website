@@ -16,7 +16,7 @@ const fs = require('fs');
 const path = require('path');
 
 const CHROMIUM_PATH = '/home/rslv/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome';
-const BASE_URL = 'http://127.0.0.1:8080';
+const BASE_URL = process.env.BASE_URL || 'http://127.0.0.1:8081';
 const SCREENSHOTS_DIR = path.join(__dirname, 'screenshots');
 
 if (!fs.existsSync(SCREENSHOTS_DIR)) {

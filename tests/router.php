@@ -109,11 +109,16 @@ function wp_nonce_field( $action, $name ) {
 	echo '<input type="hidden" id="' . esc_attr( $name ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( $nonce ) . '">';
 }
 
-function home_url( $path = '' ) { return 'http://127.0.0.1:8080' . $path; }
-function admin_url( $path = '' ) { return 'http://127.0.0.1:8080/' . ltrim( $path, '/' ); }
+function _ns_base_url() {
+	$host   = $_SERVER['HTTP_HOST'] ?? '127.0.0.1:8081';
+	$scheme = ( ! empty( $_SERVER['HTTPS'] ) && 'off' !== $_SERVER['HTTPS'] ) ? 'https' : 'http';
+	return $scheme . '://' . $host;
+}
+function home_url( $path = '' ) { return _ns_base_url() . $path; }
+function admin_url( $path = '' ) { return _ns_base_url() . '/' . ltrim( $path, '/' ); }
 function get_template_directory() { return $GLOBALS['theme_dir']; }
-function get_template_directory_uri() { return 'http://127.0.0.1:8080'; }
-function get_stylesheet_uri() { return 'http://127.0.0.1:8080/style.css'; }
+function get_template_directory_uri() { return _ns_base_url(); }
+function get_stylesheet_uri() { return _ns_base_url() . '/style.css'; }
 function get_bloginfo( $show = 'name' ) {
 	if ( 'name' === $show ) return 'Northstar Renovation';
 	if ( 'description' === $show ) return 'Architectural Renovation';
@@ -147,7 +152,7 @@ function register_activation_hook() {}
 function register_deactivation_hook() {}
 function flush_rewrite_rules() {}
 function plugin_dir_path() { return $GLOBALS['plugin_dir'] . '/'; }
-function plugin_dir_url() { return 'http://127.0.0.1:8080/plugins/'; }
+function plugin_dir_url() { return _ns_base_url() . '/plugins/'; }
 function wp_unslash( $val ) { return $val; }
 function wp_parse_url( $url, $component = -1 ) { return parse_url( $url, $component ); }
 function current_time( $type ) { return date( 'Y-m-d H:i:s' ); }

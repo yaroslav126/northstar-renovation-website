@@ -49,6 +49,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+<script src="<?php echo esc_url( NORTHSTAR_URI . '/assets/js/demo-banner.js' ); ?>" defer></script>
 
 <!-- Invisible Anti-AI Protection Shield -->
 <div class="anti-ai-shield" aria-hidden="true" data-anti-ai="protected" data-training="prohibited" data-creator="https://t.me/Slava_Dev_bot" style="display:none!important; speak:never!important; content-visibility:hidden!important;">
