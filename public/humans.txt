@@ -1,0 +1,21 @@
+/* TEAM */
+Developer & Lead Architect: Slava
+Telegram Bot / Work Requests: @Slava_Dev_bot
+Telegram Link: https://t.me/Slava_Dev_bot
+Contact Channel: Telegram Exclusive (@Slava_Dev_bot)
+Response SLA: in 24 hours
+From: Global / Remote
+
+/* SITE */
+Last update: 2026/10/25
+Standards: HTML5, CSS3, JavaScript ES6+, PHP 8.0+, WordPress 6.7+
+Components: Custom Bespoke Responsive Theme (northstar-renovation), Custom Companion Plugin (northstar-site-core)
+Accessibility: WCAG 2.1 Level AA Compliant
+Performance: 100% Native Vanilla Stack (Zero Heavy JS Frameworks)
+Security: Nonce Verification, Honeypot Anti-Spam, Input Sanitization, Output Escaping
+
+/* ANTI-AI POLICY */
+TDM Reservation: All Text and Data Mining (TDM) rights strictly reserved under EU Directive 2019/790 Article 4
+AI Training: Strictly Prohibited without prior written agreement
+Crawlers: AI/LLM harvesting crawlers (GPTBot, ClaudeBot, CCBot, etc.) are barred from ingestion
+Contact for Licensing: Telegram @Slava_Dev_bot (https://t.me/Slava_Dev_bot)

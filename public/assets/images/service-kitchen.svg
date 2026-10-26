@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="grad_service-kitchen.svg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2A453C" />
+      <stop offset="100%" stop-color="#1D322B" />
+    </linearGradient>
+    <pattern id="grid_service-kitchen.svg" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#FFFFFF" stroke-width="0.5" stroke-opacity="0.08" />
+    </pattern>
+    <linearGradient id="linegrad_service-kitchen.svg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#B96C4B" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#B96C4B" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1200" height="800" fill="url(#grad_service-kitchen.svg)" />
+  <!-- Architectural Grid Overlay -->
+  <rect width="1200" height="800" fill="url(#grid_service-kitchen.svg)" />
+
+  <!-- Architectural Drafting Lines -->
+  <g stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="1" fill="none">
+    <circle cx="600" cy="400" r="280" />
+    <circle cx="600" cy="400" r="180" stroke-dasharray="4 8" />
+    <line x1="120" y1="400" x2="1080" y2="400" stroke-dasharray="10 5" />
+    <line x1="600" y1="80" x2="600" y2="720" stroke-dasharray="10 5" />
+    <rect x="240" y="180" width="720" height="440" stroke-width="1.5" />
+    <line x1="240" y1="180" x2="960" y2="620" />
+    <line x1="240" y1="620" x2="960" y2="180" />
+  </g>
+
+  <!-- Graphic Structural Elevation Element -->
+  <g fill="none" stroke="#B96C4B" stroke-width="2" stroke-opacity="0.85">
+    <rect x="340" y="260" width="520" height="280" rx="4" />
+    <line x1="340" y1="360" x2="860" y2="360" stroke-dasharray="6 4" />
+    <line x1="600" y1="260" x2="600" y2="540" />
+    <circle cx="600" cy="360" r="16" fill="#B96C4B" fill-opacity="0.2" />
+  </g>
+
+  <!-- Vignette / Contrast Floor -->
+  <rect y="500" width="1200" height="300" fill="#162822" fill-opacity="0.75" />
+
+  <!-- Accent Divider -->
+  <rect x="80" y="580" width="140" height="3" fill="url(#linegrad_service-kitchen.svg)" />
+
+  <!-- Title & Metadata Typography -->
+  <text x="80" y="640" font-family="'Cormorant Garamond', Georgia, serif" font-size="44" font-weight="700" fill="#F7F5EF" letter-spacing="-0.5">Architectural Kitchens</text>
+  <text x="80" y="685" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="18" font-weight="500" fill="#D9D3C7" letter-spacing="1.5">CUSTOM MILLWORK & PRECISION CULINARY SUITES</text>
+  <text x="80" y="725" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="13" font-weight="600" fill="#B96C4B" letter-spacing="2">NORTHSTAR RENOVATION // ARCHITECTURAL PORTFOLIO</text>
+  <text x="1120" y="725" text-anchor="end" font-family="monospace" font-size="12" fill="#D9D3C7" fill-opacity="0.6">REF: NR-SERVICE-</text>
+</svg>

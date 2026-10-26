@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="12" fill="#203A32"/>
+  <rect x="2" y="2" width="60" height="60" rx="10" fill="none" stroke="#D9D3C7" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="32" y="44" font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif" font-size="38" font-weight="700" fill="#F7F5EF" text-anchor="middle">N</text>
+  <polygon points="46,14 48,18 52,20 48,22 46,26 44,22 40,20 44,18" fill="#B96C4B"/>
+</svg>

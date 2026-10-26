@@ -7,28 +7,35 @@
   },
   "routes": [
     {
+      "handle": "filesystem"
+    },
+    {
       "src": "/assets/(.*)",
-      "dest": "/wordpress/wp-content/themes/northstar-renovation/assets/$1"
+      "dest": "/public/assets/$1"
     },
     {
       "src": "/style.css",
-      "dest": "/wordpress/wp-content/themes/northstar-renovation/style.css"
+      "dest": "/public/style.css"
     },
     {
       "src": "/robots.txt",
-      "dest": "/robots.txt"
+      "dest": "/public/robots.txt"
     },
     {
       "src": "/humans.txt",
-      "dest": "/humans.txt"
+      "dest": "/public/humans.txt"
     },
     {
       "src": "/ai.txt",
-      "dest": "/ai.txt"
+      "dest": "/public/ai.txt"
     },
     {
       "src": "/tdm-reservation.json",
-      "dest": "/tdm-reservation.json"
+      "dest": "/public/tdm-reservation.json"
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "/public/favicon.ico"
     },
     {
       "src": "/(.*)",

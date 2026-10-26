@@ -17,49 +17,71 @@ $plugin_dir = realpath( __DIR__ . '/../wordpress/wp-content/plugins/northstar-si
 // Static Asset Serving
 $uri = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
 if ( '/favicon.ico' === $uri ) {
+	$ico = file_exists( __DIR__ . '/../public/favicon.ico' ) ? ( __DIR__ . '/../public/favicon.ico' ) : ( $theme_dir . '/assets/images/favicon.png' );
+	if ( file_exists( $ico ) ) {
+		header( 'Content-Type: image/x-icon' );
+		header( 'Cache-Control: public, max-age=86400' );
+		readfile( $ico );
+		exit;
+	}
 	header( 'Content-Type: image/x-icon' );
 	http_response_code( 204 );
 	exit;
 }
 if ( '/style.css' === $uri ) {
 	header( 'Content-Type: text/css; charset=UTF-8' );
-	readfile( $theme_dir . '/style.css' );
+	header( 'Cache-Control: public, max-age=3600' );
+	$css = file_exists( __DIR__ . '/../public/style.css' ) ? ( __DIR__ . '/../public/style.css' ) : ( $theme_dir . '/style.css' );
+	readfile( $css );
 	exit;
 }
 if ( '/humans.txt' === $uri ) {
 	header( 'Content-Type: text/plain; charset=UTF-8' );
-	readfile( __DIR__ . '/../humans.txt' );
+	$f = file_exists( __DIR__ . '/../public/humans.txt' ) ? ( __DIR__ . '/../public/humans.txt' ) : ( __DIR__ . '/../humans.txt' );
+	readfile( $f );
 	exit;
 }
 if ( '/robots.txt' === $uri ) {
 	header( 'Content-Type: text/plain; charset=UTF-8' );
-	readfile( __DIR__ . '/../robots.txt' );
+	$f = file_exists( __DIR__ . '/../public/robots.txt' ) ? ( __DIR__ . '/../public/robots.txt' ) : ( __DIR__ . '/../robots.txt' );
+	readfile( $f );
 	exit;
 }
 if ( '/ai.txt' === $uri ) {
 	header( 'Content-Type: text/plain; charset=UTF-8' );
-	readfile( __DIR__ . '/../ai.txt' );
+	$f = file_exists( __DIR__ . '/../public/ai.txt' ) ? ( __DIR__ . '/../public/ai.txt' ) : ( __DIR__ . '/../ai.txt' );
+	readfile( $f );
 	exit;
 }
 if ( '/tdm-reservation.json' === $uri ) {
 	header( 'Content-Type: application/json; charset=UTF-8' );
-	readfile( __DIR__ . '/../tdm-reservation.json' );
+	$f = file_exists( __DIR__ . '/../public/tdm-reservation.json' ) ? ( __DIR__ . '/../public/tdm-reservation.json' ) : ( __DIR__ . '/../tdm-reservation.json' );
+	readfile( $f );
 	exit;
 }
 
 if ( strpos( $uri, '/assets/' ) === 0 ) {
 	$file = $theme_dir . $uri;
+	if ( ! file_exists( $file ) ) {
+		$file = __DIR__ . '/../public' . $uri;
+	}
 	if ( file_exists( $file ) ) {
-		$ext = pathinfo( $file, PATHINFO_EXTENSION );
+		$ext = strtolower( pathinfo( $file, PATHINFO_EXTENSION ) );
 		$mimes = array(
-			'css'  => 'text/css',
-			'js'   => 'application/javascript',
-			'svg'  => 'image/svg+xml',
-			'png'  => 'image/png',
-			'jpg'  => 'image/jpeg',
-			'woff2'=> 'font/woff2',
+			'css'   => 'text/css',
+			'js'    => 'application/javascript',
+			'svg'   => 'image/svg+xml',
+			'png'   => 'image/png',
+			'jpg'   => 'image/jpeg',
+			'jpeg'  => 'image/jpeg',
+			'webp'  => 'image/webp',
+			'ico'   => 'image/x-icon',
+			'woff'  => 'font/woff',
+			'woff2' => 'font/woff2',
+			'json'  => 'application/json',
 		);
 		header( 'Content-Type: ' . ( $mimes[ $ext ] ?? 'application/octet-stream' ) );
+		header( 'Cache-Control: public, max-age=604800, immutable' );
 		readfile( $file );
 		exit;
 	}
@@ -114,14 +136,22 @@ function wp_nonce_field( $action, $name ) {
 
 function _ns_base_url() {
 	$host   = $_SERVER['HTTP_HOST'] ?? '127.0.0.1:8081';
-	$scheme = ( ! empty( $_SERVER['HTTPS'] ) && 'off' !== $_SERVER['HTTPS'] ) ? 'https' : 'http';
+	$is_https = ( ! empty( $_SERVER['HTTPS'] ) && 'off' !== $_SERVER['HTTPS'] )
+		|| ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && 'https' === $_SERVER['HTTP_X_FORWARDED_PROTO'] )
+		|| ( isset( $_SERVER['HTTP_X_FORWARDED_SSL'] ) && 'on' === $_SERVER['HTTP_X_FORWARDED_SSL'] );
+	$scheme = $is_https ? 'https' : 'http';
 	return $scheme . '://' . $host;
 }
-function home_url( $path = '' ) { return _ns_base_url() . $path; }
+function home_url( $path = '' ) {
+	if ( empty( $path ) ) {
+		return _ns_base_url();
+	}
+	return _ns_base_url() . '/' . ltrim( $path, '/' );
+}
 function admin_url( $path = '' ) { return _ns_base_url() . '/' . ltrim( $path, '/' ); }
 function get_template_directory() { return $GLOBALS['theme_dir']; }
-function get_template_directory_uri() { return _ns_base_url(); }
-function get_stylesheet_uri() { return _ns_base_url() . '/style.css'; }
+function get_template_directory_uri() { return ''; }
+function get_stylesheet_uri() { return '/style.css'; }
 function get_bloginfo( $show = 'name' ) {
 	if ( 'name' === $show ) return 'Northstar Renovation';
 	if ( 'description' === $show ) return 'Architectural Renovation';

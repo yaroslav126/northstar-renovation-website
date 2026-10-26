@@ -1,0 +1,14 @@
+{
+  "$schema": "https://www.w3.org/community/tdmrep/",
+  "version": "1.0",
+  "reservation": true,
+  "description": "Text and Data Mining (TDM) Reservation under EU Directive 2019/790 Article 4",
+  "author": "Slava (@Slava_Dev_bot)",
+  "contact": "https://t.me/Slava_Dev_bot",
+  "policy": {
+    "text_and_data_mining": "forbidden",
+    "ai_training": "forbidden",
+    "dataset_ingestion": "forbidden",
+    "commercial_scraping": "forbidden"
+  }
+}
