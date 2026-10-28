@@ -21,19 +21,19 @@ Tags: construction, architecture, renovation, portfolio, business, custom-header
    1. CSS CUSTOM PROPERTIES (DESIGN SYSTEM TOKENS)
    ========================================================================== */
 :root {
-	/* Core Color Tokens (Forest Canopy Palette) */
+	/* Core Color Tokens (Warm Natural Yellowish Architectural Palette) */
 	--ns-color-forest: #203A32;
 	--ns-color-forest-dark: #162822;
 	--ns-color-forest-light: #2A4C42;
-	--ns-color-ivory: #F7F5EF;
-	--ns-color-stone: #D9D3C7;
-	--ns-color-stone-light: #EBE7DF;
+	--ns-color-ivory: #F5EEDC;
+	--ns-color-stone: #D5CBB6;
+	--ns-color-stone-light: #EBE1CC;
 	--ns-color-charcoal: #272A28;
 	--ns-color-terracotta: #B96C4B;
 	--ns-color-terracotta-dark: #975235;
-	--ns-color-white: #FFFFFF;
+	--ns-color-white: #FAF6EC;
 	--ns-color-muted: #585F5B;
-	--ns-color-border: #D9D3C7;
+	--ns-color-border: #DCD2BC;
 
 	/* Semantic Feedback Tokens */
 	--ns-color-success-bg: #E8F4EC;
@@ -353,12 +353,12 @@ p {
 .ns-btn-outline-light {
 	background-color: transparent;
 	color: var(--ns-color-ivory);
-	border-color: rgba(247, 245, 239, 0.4);
+	border-color: rgba(245, 238, 220, 0.4);
 }
 
 .ns-btn-outline-light:hover {
 	border-color: var(--ns-color-ivory);
-	background-color: rgba(247, 245, 239, 0.1);
+	background-color: rgba(245, 238, 220, 0.1);
 	color: var(--ns-color-white);
 }
 
@@ -369,7 +369,7 @@ p {
 	position: sticky;
 	top: 0;
 	z-index: 1000;
-	background-color: rgba(247, 245, 239, 0.96);
+	background-color: rgba(245, 238, 220, 0.96);
 	backdrop-filter: blur(8px);
 	border-bottom: 1px solid var(--ns-color-border);
 	transition: background-color var(--ns-transition), box-shadow var(--ns-transition);
@@ -1918,9 +1918,9 @@ p {
 	}
 
 	.ns-mobile-bar-call {
-		background: rgba(247, 245, 239, 0.12);
+		background: rgba(245, 238, 220, 0.12);
 		color: var(--ns-color-ivory);
-		border: 1px solid rgba(217, 211, 199, 0.3);
+		border: 1px solid rgba(213, 203, 182, 0.3);
 	}
 
 	.ns-mobile-bar-cta {
