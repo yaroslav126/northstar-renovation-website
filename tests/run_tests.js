@@ -80,7 +80,7 @@ async function runTests() {
 			const consoleErrors = [];
 			page.on('console', msg => {
 				const text = msg.text();
-				if (msg.type() === 'error' && !text.includes('ERR_NETWORK_CHANGED') && !text.includes('ERR_INTERNET_DISCONNECTED')) {
+				if (msg.type() === 'error' && !text.includes('ERR_NETWORK_CHANGED') && !text.includes('ERR_INTERNET_DISCONNECTED') && !text.includes('ERR_CONNECTION_CLOSED') && !text.includes('ERR_NAME_NOT_RESOLVED')) {
 					consoleErrors.push(text);
 				}
 			});

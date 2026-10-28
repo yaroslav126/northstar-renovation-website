@@ -20,41 +20,41 @@
       box-sizing: border-box;
     }
     .dev-demo-banner-bar {
-      background: rgba(15, 23, 42, 0.94);
+      background: #090e1a;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
       color: #f8fafc;
-      padding: 10px 16px;
+      padding: 5px 16px;
+      min-height: 36px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      font-size: 13.5px;
-      line-height: 1.45;
+      gap: 14px;
+      font-size: 12.5px;
+      line-height: 1.35;
       font-family: "Times New Roman", Times, Baskerville, Georgia, serif;
     }
     .dev-demo-banner-content {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       flex: 1;
       min-width: 0;
     }
     .dev-demo-banner-badge {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      background: rgba(234, 179, 8, 0.22);
-      border: 1px solid rgba(234, 179, 8, 0.55);
-      color: #fde047;
+      background: transparent;
+      border: none;
+      color: #eab308;
       font-weight: 700;
-      font-size: 11.5px;
+      font-size: 13.5px;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      padding: 3px 9px;
-      border-radius: 6px;
+      padding: 0;
+      margin: 0;
       white-space: nowrap;
       flex-shrink: 0;
       font-family: "Times New Roman", Times, Baskerville, Georgia, serif;
@@ -64,18 +64,18 @@
       overflow: hidden;
       text-overflow: ellipsis;
       font-family: "Times New Roman", Times, Baskerville, Georgia, serif;
-      font-size: 13.5px;
-      line-height: 1.45;
+      font-size: 12.5px;
+      line-height: 1.35;
     }
     .dev-demo-banner-text strong {
       color: #ffffff;
-      font-weight: 600;
+      font-weight: 700;
       font-family: "Times New Roman", Times, Baskerville, Georgia, serif;
     }
     .dev-demo-banner-actions {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       flex-shrink: 0;
     }
     .dev-demo-banner-btn-tg {
@@ -85,10 +85,10 @@
       background: #0284c7;
       color: #ffffff !important;
       text-decoration: none !important;
-      font-weight: 600;
-      font-size: 12.5px;
-      padding: 6px 12px;
-      border-radius: 6px;
+      font-weight: 700;
+      font-size: 12px;
+      padding: 4px 11px;
+      border-radius: 4px;
       transition: background 0.2s ease, transform 0.1s ease;
       white-space: nowrap;
       font-family: "Times New Roman", Times, Baskerville, Georgia, serif;
@@ -102,16 +102,17 @@
       border: 1px solid rgba(255, 255, 255, 0.12);
       color: #94a3b8;
       cursor: pointer;
-      width: 26px;
-      height: 26px;
-      border-radius: 6px;
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
+      font-size: 13px;
       line-height: 1;
       padding: 0;
       transition: all 0.2s ease;
+      font-family: "Times New Roman", Times, Baskerville, Georgia, serif;
     }
     .dev-demo-banner-btn-close:hover {
       background: rgba(255, 255, 255, 0.18);
@@ -130,8 +131,8 @@
       font-family: "Times New Roman", Times, Baskerville, Georgia, serif;
       font-size: 12px;
       font-weight: 600;
-      padding: 7px 12px;
-      border-radius: 6px;
+      padding: 6px 12px;
+      border-radius: 4px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
       cursor: pointer;
       display: none;
