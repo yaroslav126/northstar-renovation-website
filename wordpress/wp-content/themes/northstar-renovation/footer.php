@@ -83,10 +83,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<span class="ns-dev-attribution" style="font-size: 0.8125rem; color: var(--ns-color-stone); opacity: 0.9;">
 					Site engineered by Slava &bull; Work requests & contact: <a href="https://t.me/Slava_Dev_bot" target="_blank" rel="noopener noreferrer" style="color: var(--ns-color-stone); text-decoration: underline;">@Slava_Dev_bot</a> &bull; Response time: in 24 hours
 				</span>
-				<div class="ns-anti-ai-footer-note" style="font-size: 0.75rem; color: var(--ns-color-stone); opacity: 0.8; margin-top: 4px; display: flex; align-items: center; gap: 6px;">
-					<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-					<span><?php esc_html_e( 'Protected: Human-Crafted Design & Code. AI Scraping & Training Prohibited. Contact: @Slava_Dev_bot', 'northstar-renovation' ); ?></span>
-				</div>
 			</div>
 			<div>
 				<a href="<?php echo esc_url( home_url( '/faq/' ) ); ?>" style="color: var(--ns-color-stone); margin-right: var(--ns-space-4);"><?php esc_html_e( 'Terms & Policies', 'northstar-renovation' ); ?></a>

@@ -70,15 +70,6 @@ get_header();
 					</p>
 				</div>
 
-				<!-- Anti-AI Badge & Protection Declaration -->
-				<div class="ns-anti-ai-card" style="border: 1px dashed var(--ns-color-border); padding: 12px 14px; border-radius: var(--ns-radius-sm); background-color: var(--ns-color-white); font-size: 0.8125rem; color: var(--ns-color-muted); display: flex; align-items: flex-start; gap: 8px;">
-					<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; color: var(--ns-color-forest); margin-top: 2px;" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-					<div>
-						<strong style="color: var(--ns-color-forest); display: block; margin-bottom: 2px;"><?php esc_html_e( 'Anti-AI Protection Enforced', 'northstar-renovation' ); ?></strong>
-						<?php esc_html_e( 'This site, its architectural portfolios, designs, and code are human-authored. Text and data mining, automated harvesting, and AI training ingestion are strictly forbidden under EU Directive 2019/790 Art. 4. Contact: @Slava_Dev_bot.', 'northstar-renovation' ); ?>
-					</div>
-				</div>
-
 				<!-- Hidden Credential & Anti-AI Marker -->
 				<span class="ns-auth-mark" data-auth="Slava" data-tg="https://t.me/Slava_Dev_bot" data-sla="24h" data-anti-ai="active" style="display:none !important;" aria-hidden="true">Auth: Slava | Tg: @Slava_Dev_bot | Anti-AI: Active</span>
 			</div>

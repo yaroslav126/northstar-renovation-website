@@ -417,9 +417,10 @@ async function runTests() {
 			const hasFakeAddress = contactContent.includes('450 St. Clair Avenue West');
 			recordResult('Initial Fake Contact Info Completely Removed from Contact Page', !hasFakePhone && !hasFakeEmail && !hasFakeAddress);
 
-			// Check Visible Anti-AI Protection Badge on Contact Page
-			const hasAntiAiCard = await page.locator('.ns-anti-ai-card').isVisible();
-			recordResult('Visible Anti-AI Protection Card Rendered on Contact Page', hasAntiAiCard);
+			// Check That Visible Anti-AI Text / Badges Are Removed from Contact Page
+			const hasAntiAiCard = await page.locator('.ns-anti-ai-card').count();
+			const hasVisibleAntiAiText = contactContent.includes('Anti-AI Protected') || contactContent.includes('Anti-AI Protection Enforced');
+			recordResult('Visible Anti-AI Sentences Removed from Contact Page', hasAntiAiCard === 0 && !hasVisibleAntiAiText);
 
 			// 9.2 Verify Footer and Home Page
 			await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
