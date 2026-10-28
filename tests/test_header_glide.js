@@ -86,6 +86,26 @@ async function testHeaderGlideAndFooter() {
   console.log('After clicking Brand - Right tabs:', rightTabsAfterBrand);
   await page.screenshot({ path: path.join(SCREENSHOT_DIR, '05_header_after_brand_reset.png') });
 
+  // Test 4: Mobile Viewport Check (375x812)
+  console.log('\n5. Checking Mobile Header (375x812)...');
+  const mobilePage = await browser.newPage({ viewport: { width: 375, height: 812 } });
+  await mobilePage.goto(BASE_URL, { waitUntil: 'networkidle' });
+
+  const mobileBrandExists = await mobilePage.$('.ns-mobile-brand');
+  const mobileBrandVisible = mobileBrandExists ? await mobileBrandExists.isVisible() : false;
+  console.log('Mobile brand on left visible?', mobileBrandVisible ? 'YES (FAIL)' : 'NO (PASS)');
+
+  const centerBrandOnMobile = await mobilePage.$('.ns-brand-center-wrapper');
+  const centerBrandOnMobileVisible = centerBrandOnMobile ? await centerBrandOnMobile.isVisible() : false;
+  const centerBrandBox = centerBrandOnMobile ? await centerBrandOnMobile.boundingBox() : null;
+  console.log('Center brand on mobile visible?', centerBrandOnMobileVisible ? 'YES (PASS)' : 'NO (FAIL)');
+  if (centerBrandBox) {
+    console.log(`Center brand horizontal center on mobile: ${centerBrandBox.x + centerBrandBox.width / 2}px (Screen width: 375px, exact half: 187.5px)`);
+  }
+
+  await mobilePage.screenshot({ path: path.join(SCREENSHOT_DIR, '06_mobile_header_centered.png') });
+  await mobilePage.close();
+
   await browser.close();
   console.log('\nAll interactive checks completed successfully!');
 }

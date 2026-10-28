@@ -474,39 +474,24 @@ p {
 
 .ns-header-centered-brand {
 	width: 100%;
-}
-
-.ns-mobile-brand {
-	display: none;
-}
-
-.ns-split-nav {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
 	position: relative;
 }
 
-.ns-nav-list-left {
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-	gap: var(--ns-space-2);
-	list-style: none;
-	flex: 1 1 0;
-	min-width: 0;
-	margin: 0;
-	padding: 0;
+.ns-mobile-brand {
+	display: none !important;
 }
 
 .ns-brand-center-wrapper {
-	flex-shrink: 0;
-	margin: 0 clamp(0.75rem, 2.5vw, 2.25rem);
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 20;
+	pointer-events: auto;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	z-index: 5;
+	white-space: nowrap;
 }
 
 .ns-brand-center {
@@ -525,16 +510,38 @@ p {
 	color: var(--ns-color-forest);
 }
 
+.ns-split-nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	position: relative;
+}
+
+.ns-nav-list-left {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: clamp(8px, 1vw, 14px);
+	list-style: none;
+	width: 50%;
+	box-sizing: border-box;
+	padding-right: clamp(116px, 9.5vw, 128px);
+	margin: 0;
+	padding-left: 0;
+}
+
 .ns-nav-list-right {
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-	gap: var(--ns-space-2);
+	gap: clamp(8px, 1vw, 14px);
 	list-style: none;
-	flex: 1 1 0;
-	min-width: 0;
+	width: 50%;
+	box-sizing: border-box;
+	padding-left: clamp(116px, 9.5vw, 128px);
 	margin: 0;
-	padding: 0;
+	padding-right: 0;
 }
 
 .ns-tab-item {
@@ -1707,15 +1714,25 @@ p {
 	}
 
 	.ns-header-centered-brand {
-		justify-content: space-between;
+		justify-content: flex-end;
+		position: relative;
 	}
 
 	.ns-mobile-brand {
-		display: inline-flex;
+		display: none !important;
 	}
 
 	.ns-brand-center-wrapper {
-		display: none;
+		display: flex;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 20;
+	}
+
+	.ns-brand-center-wrapper .ns-brand-title {
+		font-size: clamp(1.05rem, 4vw, 1.35rem);
 	}
 
 	.ns-split-nav {
@@ -1730,7 +1747,8 @@ p {
 		width: 100%;
 		gap: 0;
 		flex: none;
-		margin-bottom: 0;
+		margin: 0;
+		padding: 0;
 	}
 
 	.ns-tab-item {

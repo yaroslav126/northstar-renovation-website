@@ -62,10 +62,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <header class="ns-site-header" role="banner">
 	<div class="ns-container ns-header-inner ns-header-centered-brand">
-		<!-- Mobile Brand Display (Phone / Small Screen Viewport) -->
-		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="ns-brand ns-mobile-brand" rel="home">
-			<span class="ns-brand-title"><?php bloginfo( 'name' ); ?></span>
-		</a>
+		<!-- Static Center Brand (No name on left, rock-solid static at center) -->
+		<div class="ns-brand-center-wrapper">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="ns-brand ns-brand-center" rel="home">
+				<span class="ns-brand-title"><?php bloginfo( 'name' ); ?></span>
+			</a>
+		</div>
 
 		<!-- Primary Navigation Menu (Split on Desktop, Drawer on Mobile) -->
 		<nav id="site-navigation" class="ns-primary-nav ns-split-nav" role="navigation" aria-label="<?php esc_attr_e( 'Primary Navigation', 'northstar-renovation' ); ?>">
@@ -123,13 +125,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 				}
 				?>
 			</ul>
-
-			<!-- Center Brand Logo Name -->
-			<div class="ns-brand-center-wrapper">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="ns-brand ns-brand-center" rel="home">
-					<span class="ns-brand-title"><?php bloginfo( 'name' ); ?></span>
-				</a>
-			</div>
 
 			<!-- Right Side Tabs (Following tabs) -->
 			<ul class="ns-nav-list ns-nav-list-right" id="ns-tabs-right">
