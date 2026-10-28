@@ -64,21 +64,24 @@ Tags: construction, architecture, renovation, portfolio, business, custom-header
 	--ns-container-narrow: 840px;
 	--ns-header-height: 84px;
 
-	/* Transitions & Shadows */
-	--ns-transition: 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+	/* Transitions & Shadows (Strictly removed animative interactions) */
+	--ns-transition: none;
+	--ns-trans-base: none;
 	--ns-shadow-card: 0 4px 20px rgba(32, 58, 50, 0.05);
-	--ns-shadow-hover: 0 12px 32px rgba(32, 58, 50, 0.1);
+	--ns-shadow-hover: 0 4px 20px rgba(32, 58, 50, 0.05);
 	--ns-radius-sm: 4px;
 	--ns-radius-md: 6px;
 }
 
 /* ==========================================================================
-   2. RESET & BASE ELEMENTS
+   2. RESET & BASE ELEMENTS (No animations or animative interactions)
    ========================================================================== */
 *, *::before, *::after {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+	animation: none !important;
+	transition: none !important;
 }
 
 html {
@@ -87,7 +90,7 @@ html {
 	line-height: 1.65;
 	color: var(--ns-color-charcoal);
 	background-color: var(--ns-color-ivory);
-	scroll-behavior: smooth;
+	scroll-behavior: auto !important;
 	-webkit-text-size-adjust: 100%;
 	overflow-x: hidden;
 	width: 100%;
@@ -448,34 +451,31 @@ p {
 .ns-nav-list {
 	display: flex;
 	align-items: center;
-	gap: var(--ns-space-6);
+	gap: var(--ns-space-2);
 	list-style: none;
 }
 
 .ns-nav-link {
 	font-family: var(--ns-font-sans);
-	font-size: 0.9375rem;
+	font-size: 0.875rem;
 	font-weight: 500;
 	color: var(--ns-color-charcoal);
-	padding: var(--ns-space-2) 0;
+	padding: 0.5rem 0.875rem;
+	border-radius: var(--ns-radius-sm);
 	position: relative;
-	transition: color var(--ns-transition);
+	text-decoration: none;
 }
 
-.ns-nav-link:hover,
+.ns-nav-link:hover {
+	color: var(--ns-color-forest);
+	background-color: rgba(26, 47, 35, 0.05);
+}
+
 .ns-nav-link.is-current {
 	color: var(--ns-color-forest);
 	font-weight: 600;
-}
-
-.ns-nav-link.is-current::after {
-	content: "";
-	position: absolute;
-	bottom: -2px;
-	left: 0;
-	right: 0;
-	height: 2px;
-	background-color: var(--ns-color-terracotta);
+	background-color: rgba(26, 47, 35, 0.08);
+	box-shadow: inset 0 -2px 0 var(--ns-color-terracotta);
 }
 
 .ns-header-actions {

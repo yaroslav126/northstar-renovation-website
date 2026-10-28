@@ -64,11 +64,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="ns-container ns-header-inner">
 		<!-- Brand Identity -->
 		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="ns-brand" rel="home">
-			<div class="ns-brand-mark" aria-hidden="true">N</div>
-			<div class="ns-brand-text">
-				<span class="ns-brand-title"><?php bloginfo( 'name' ); ?></span>
-				<span class="ns-brand-tagline"><?php echo esc_html( get_bloginfo( 'description' ) ? get_bloginfo( 'description' ) : __( 'Architectural Renovation', 'northstar-renovation' ) ); ?></span>
-			</div>
+			<span class="ns-brand-title"><?php bloginfo( 'name' ); ?></span>
 		</a>
 
 		<!-- Primary Navigation Menu -->
@@ -76,7 +72,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<!-- Mobile Drawer Header with Close Button -->
 			<div class="ns-drawer-header">
 				<div class="ns-drawer-brand">
-					<span class="ns-drawer-mark" aria-hidden="true">N</span>
 					<span class="ns-drawer-title"><?php esc_html_e( 'Navigation', 'northstar-renovation' ); ?></span>
 				</div>
 				<button type="button" class="ns-drawer-close" aria-label="<?php esc_attr_e( 'Close navigation drawer', 'northstar-renovation' ); ?>">
@@ -122,7 +117,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<!-- Mobile Navigation Drawer Quick Actions & Studio Coordinates -->
 			<div class="ns-mobile-drawer-footer">
 				<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="ns-btn ns-btn-terracotta" style="width: 100%; justify-content: center; margin-bottom: var(--ns-space-4);">
-					<?php esc_html_e( 'Request Free Consultation', 'northstar-renovation' ); ?> &rarr;
+					<?php esc_html_e( 'Contact Us', 'northstar-renovation' ); ?> &rarr;
 				</a>
 				<div class="ns-mobile-drawer-contact">
 					<p style="margin-bottom: var(--ns-space-2);">
@@ -141,10 +136,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<!-- Action CTA & Mobile Trigger -->
 		<div class="ns-header-actions">
-			<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="ns-btn ns-btn-primary">
-				<?php esc_html_e( 'Request Consultation', 'northstar-renovation' ); ?>
-			</a>
-
 			<button type="button" class="ns-menu-toggle" aria-controls="site-navigation" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation menu', 'northstar-renovation' ); ?>">
 				<span class="ns-menu-toggle-label"><?php esc_html_e( 'Menu', 'northstar-renovation' ); ?></span>
 				<span class="ns-menu-toggle-icon" aria-hidden="true">
