@@ -162,10 +162,7 @@
     bannerRoot.innerHTML = `
       <div class="dev-demo-banner-bar" role="region" aria-label="Portfolio Demo Notice">
         <div class="dev-demo-banner-content">
-          <span class="dev-demo-banner-badge">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-            DEMO ONLY
-          </span>
+          <span class="dev-demo-banner-badge">DEMO ONLY</span>
           <div class="dev-demo-banner-text">
             <strong>Belongs to site developer:</strong> <a href="https://t.me/Slava_Dev_bot" target="_blank" rel="noopener noreferrer" style="color:#38bdf8;text-decoration:underline;">@Slava_Dev_bot</a>. 
             All rights reserved — <em>do not copy</em>. This website is a functional prototype built strictly to demonstrate visual design, calculations, transitions, and animations (no real orders or backend data are processed).
@@ -184,7 +181,6 @@
     const pillRestore = document.createElement('div');
     pillRestore.id = 'dev-demo-pill-restore';
     pillRestore.innerHTML = `
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
       <span>Demo by @Slava_Dev_bot</span>
     `;
 
