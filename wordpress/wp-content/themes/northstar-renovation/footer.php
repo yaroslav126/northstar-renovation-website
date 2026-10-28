@@ -12,14 +12,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 </main><!-- #primary-content -->
 
 <footer class="ns-site-footer" role="contentinfo">
-	<div class="ns-container">
+	<div class="ns-container ns-container-full">
 		<div class="ns-footer-grid">
 			<!-- Col 1: Brand & Philosophy -->
 			<div class="ns-footer-col">
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="ns-brand" style="margin-bottom: var(--ns-space-4);">
-					<div class="ns-brand-mark" style="background-color: var(--ns-color-ivory); color: var(--ns-color-forest);">N</div>
 					<div class="ns-brand-text">
-						<span class="ns-brand-title" style="color: var(--ns-color-ivory);"><?php bloginfo( 'name' ); ?></span>
+						<span class="ns-brand-title" style="color: var(--ns-color-ivory); font-size: 1.35rem;"><?php bloginfo( 'name' ); ?></span>
 						<span class="ns-brand-tagline"><?php esc_html_e( 'Architectural Renovation', 'northstar-renovation' ); ?></span>
 					</div>
 				</a>

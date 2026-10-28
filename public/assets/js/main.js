@@ -14,6 +14,7 @@
 		initPortfolioFilter();
 		initFaqAccordions();
 		initContactForm();
+		initSplitNavigation();
 	});
 
 
@@ -265,6 +266,183 @@
 				});
 			}
 		});
+	}
+
+	/**
+	 * 6. Dynamic Split Navigation with Smooth Glide Across Center Logo
+	 */
+	function initSplitNavigation() {
+		var leftList = document.getElementById('ns-tabs-left');
+		var rightList = document.getElementById('ns-tabs-right');
+		if (!leftList || !rightList) return;
+
+		var allTabLinks = document.querySelectorAll('.ns-tab-item a.ns-nav-link');
+		var centerLogo = document.querySelector('.ns-brand-center');
+		var isAnimating = false;
+
+		function getTabIndex(item) {
+			return parseInt(item.getAttribute('data-tab-index') || '0', 10);
+		}
+
+		function sortList(list) {
+			var items = Array.from(list.children);
+			items.sort(function (a, b) {
+				return getTabIndex(a) - getTabIndex(b);
+			});
+			items.forEach(function (item) {
+				list.appendChild(item);
+			});
+		}
+
+		function migrateTabs(targetIdx, targetHref) {
+			if (isAnimating) return;
+
+			// On mobile drawer viewport, navigate directly
+			if (window.innerWidth <= 900) {
+				if (targetHref && targetHref !== window.location.href) {
+					window.location.href = targetHref;
+				}
+				return;
+			}
+
+			var allItems = Array.from(document.querySelectorAll('.ns-tab-item'));
+			if (!allItems.length) return;
+
+			isAnimating = true;
+
+			// Preload target URL in parallel
+			if (targetHref && targetHref !== window.location.href) {
+				try {
+					fetch(targetHref, { credentials: 'same-origin' }).catch(function () {});
+				} catch (err) {}
+			}
+
+			// 1. FIRST: Capture initial positions
+			var firstRects = new Map();
+			allItems.forEach(function (item) {
+				firstRects.set(item, item.getBoundingClientRect());
+			});
+
+			// 2. REORDER: Distribute items left or right based on targetIdx
+			allItems.forEach(function (item) {
+				var idx = getTabIndex(item);
+				if (idx <= targetIdx) {
+					leftList.appendChild(item);
+				} else {
+					rightList.appendChild(item);
+				}
+			});
+
+			// Maintain identical left-to-right order in both lists
+			sortList(leftList);
+			sortList(rightList);
+
+			// Update active tab class
+			allItems.forEach(function (item) {
+				var link = item.querySelector('.ns-nav-link');
+				var idx = getTabIndex(item);
+				if (link) {
+					if (idx === targetIdx) {
+						link.classList.add('is-current');
+						link.setAttribute('aria-current', 'page');
+					} else {
+						link.classList.remove('is-current');
+						link.removeAttribute('aria-current');
+					}
+				}
+			});
+
+			// 3. LAST: Capture destination positions
+			var lastRects = new Map();
+			allItems.forEach(function (item) {
+				lastRects.set(item, item.getBoundingClientRect());
+			});
+
+			// 4. INVERT: Set delta transforms
+			var movedItems = [];
+			allItems.forEach(function (item) {
+				var first = firstRects.get(item);
+				var last = lastRects.get(item);
+				if (!first || !last) return;
+
+				var deltaX = first.left - last.left;
+				var deltaY = first.top - last.top;
+
+				if (Math.abs(deltaX) > 1 || Math.abs(deltaY) > 1) {
+					item.style.transition = 'none';
+					item.style.transform = 'translate(' + deltaX + 'px, ' + deltaY + 'px)';
+					item.style.zIndex = '25';
+					movedItems.push(item);
+				}
+			});
+
+			// 5. PLAY: Animate smoothly to new positions
+			requestAnimationFrame(function () {
+				requestAnimationFrame(function () {
+					movedItems.forEach(function (item) {
+						item.style.transition = 'transform 0.42s cubic-bezier(0.22, 1, 0.36, 1)';
+						item.style.transform = '';
+					});
+				});
+			});
+
+			// Cleanup and proceed to destination
+			setTimeout(function () {
+				movedItems.forEach(function (item) {
+					item.style.transition = '';
+					item.style.transform = '';
+					item.style.zIndex = '';
+				});
+				isAnimating = false;
+
+				if (targetHref && targetHref !== window.location.href) {
+					window.location.href = targetHref;
+				}
+			}, 440);
+		}
+
+		allTabLinks.forEach(function (link) {
+			link.addEventListener('click', function (e) {
+				var item = link.closest('.ns-tab-item');
+				if (!item) return;
+
+				var targetIdx = getTabIndex(item);
+				var href = link.getAttribute('href');
+
+				// Check if already on this page
+				var currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+				var targetPath = '';
+				try {
+					targetPath = new URL(href, window.location.origin).pathname.replace(/\/$/, '') || '/';
+				} catch (err) {
+					targetPath = href;
+				}
+
+				if (currentPath === targetPath) {
+					e.preventDefault();
+					migrateTabs(targetIdx, null);
+					return;
+				}
+
+				e.preventDefault();
+				migrateTabs(targetIdx, href);
+			});
+		});
+
+		// Clicking center logo moves tabs back to initial (Home on left, rest on right)
+		if (centerLogo) {
+			centerLogo.addEventListener('click', function (e) {
+				var homeHref = centerLogo.getAttribute('href');
+				var currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+				if (currentPath === '' || currentPath === '/') {
+					e.preventDefault();
+					migrateTabs(0, null);
+					return;
+				}
+				e.preventDefault();
+				migrateTabs(0, homeHref);
+			});
+		}
 	}
 })();
 

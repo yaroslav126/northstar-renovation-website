@@ -61,14 +61,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 </a>
 
 <header class="ns-site-header" role="banner">
-	<div class="ns-container ns-header-inner">
-		<!-- Brand Identity -->
-		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="ns-brand" rel="home">
+	<div class="ns-container ns-header-inner ns-header-centered-brand">
+		<!-- Mobile Brand Display (Phone / Small Screen Viewport) -->
+		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="ns-brand ns-mobile-brand" rel="home">
 			<span class="ns-brand-title"><?php bloginfo( 'name' ); ?></span>
 		</a>
 
-		<!-- Primary Navigation Menu -->
-		<nav id="site-navigation" class="ns-primary-nav" role="navigation" aria-label="<?php esc_attr_e( 'Primary Navigation', 'northstar-renovation' ); ?>">
+		<!-- Primary Navigation Menu (Split on Desktop, Drawer on Mobile) -->
+		<nav id="site-navigation" class="ns-primary-nav ns-split-nav" role="navigation" aria-label="<?php esc_attr_e( 'Primary Navigation', 'northstar-renovation' ); ?>">
 			<!-- Mobile Drawer Header with Close Button -->
 			<div class="ns-drawer-header">
 				<div class="ns-drawer-brand">
@@ -83,37 +83,65 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 
 			<?php
-			if ( has_nav_menu( 'primary' ) ) {
-				wp_nav_menu(
-					array(
-						'theme_location' => 'primary',
-						'menu_class'     => 'ns-nav-list',
-						'container'      => false,
-						'fallback_cb'    => false,
-						'depth'          => 2,
-					)
-				);
-			} else {
-				// Semantic accessible default navigation
-				$current_url = home_url( add_query_arg( array(), $GLOBALS['wp']->request ?? '' ) );
-				$nav_items = array(
-					home_url( '/' )             => __( 'Home', 'northstar-renovation' ),
-					home_url( '/services/' )     => __( 'Services', 'northstar-renovation' ),
-					home_url( '/portfolio/' )    => __( 'Portfolio', 'northstar-renovation' ),
-					home_url( '/about/' )        => __( 'About', 'northstar-renovation' ),
-					home_url( '/blog/' )         => __( 'Insights', 'northstar-renovation' ),
-					home_url( '/faq/' )          => __( 'FAQ', 'northstar-renovation' ),
-					home_url( '/contact/' )      => __( 'Contact', 'northstar-renovation' ),
-				);
-				echo '<ul class="ns-nav-list">';
-				foreach ( $nav_items as $url => $label ) {
-					$is_active = ( rtrim( $current_url, '/' ) === rtrim( $url, '/' ) ) ? ' is-current' : '';
-					$aria_cur  = $is_active ? ' aria-current="page"' : '';
-					echo '<li><a href="' . esc_url( $url ) . '" class="ns-nav-link' . esc_attr( $is_active ) . '"' . $aria_cur . '>' . esc_html( $label ) . '</a></li>';
-				}
-				echo '</ul>';
+			$req_uri = $_SERVER['REQUEST_URI'] ?? '/';
+			$active_idx = 0; // Default: Home
+
+			if ( strpos( $req_uri, '/contact' ) !== false ) {
+				$active_idx = 6;
+			} elseif ( strpos( $req_uri, '/faq' ) !== false ) {
+				$active_idx = 5;
+			} elseif ( strpos( $req_uri, '/blog' ) !== false ) {
+				$active_idx = 4;
+			} elseif ( strpos( $req_uri, '/about' ) !== false ) {
+				$active_idx = 3;
+			} elseif ( strpos( $req_uri, '/portfolio' ) !== false ) {
+				$active_idx = 2;
+			} elseif ( strpos( $req_uri, '/services' ) !== false ) {
+				$active_idx = 1;
 			}
+
+			$nav_items = array(
+				home_url( '/' )          => array( 'label' => __( 'Home', 'northstar-renovation' ), 'idx' => 0 ),
+				home_url( '/services/' )  => array( 'label' => __( 'Services', 'northstar-renovation' ), 'idx' => 1 ),
+				home_url( '/portfolio/' ) => array( 'label' => __( 'Portfolio', 'northstar-renovation' ), 'idx' => 2 ),
+				home_url( '/about/' )     => array( 'label' => __( 'About', 'northstar-renovation' ), 'idx' => 3 ),
+				home_url( '/blog/' )      => array( 'label' => __( 'Insights', 'northstar-renovation' ), 'idx' => 4 ),
+				home_url( '/faq/' )       => array( 'label' => __( 'FAQ', 'northstar-renovation' ), 'idx' => 5 ),
+				home_url( '/contact/' )   => array( 'label' => __( 'Contact', 'northstar-renovation' ), 'idx' => 6 ),
+			);
 			?>
+
+			<!-- Left Side Tabs (Active & preceding tabs) -->
+			<ul class="ns-nav-list ns-nav-list-left" id="ns-tabs-left">
+				<?php
+				foreach ( $nav_items as $url => $item ) {
+					if ( $item['idx'] <= $active_idx ) {
+						$is_active = ( $item['idx'] === $active_idx ) ? ' is-current' : '';
+						$aria_cur  = $is_active ? ' aria-current="page"' : '';
+						echo '<li class="ns-tab-item" data-tab-index="' . $item['idx'] . '"><a href="' . esc_url( $url ) . '" class="ns-nav-link' . esc_attr( $is_active ) . '"' . $aria_cur . '>' . esc_html( $item['label'] ) . '</a></li>';
+					}
+				}
+				?>
+			</ul>
+
+			<!-- Center Brand Logo Name -->
+			<div class="ns-brand-center-wrapper">
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="ns-brand ns-brand-center" rel="home">
+					<span class="ns-brand-title"><?php bloginfo( 'name' ); ?></span>
+				</a>
+			</div>
+
+			<!-- Right Side Tabs (Following tabs) -->
+			<ul class="ns-nav-list ns-nav-list-right" id="ns-tabs-right">
+				<?php
+				foreach ( $nav_items as $url => $item ) {
+					if ( $item['idx'] > $active_idx ) {
+						echo '<li class="ns-tab-item" data-tab-index="' . $item['idx'] . '"><a href="' . esc_url( $url ) . '" class="ns-nav-link">' . esc_html( $item['label'] ) . '</a></li>';
+					}
+				}
+				?>
+			</ul>
+
 			<!-- Mobile Navigation Drawer Quick Actions & Studio Coordinates -->
 			<div class="ns-mobile-drawer-footer">
 				<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="ns-btn ns-btn-terracotta" style="width: 100%; justify-content: center; margin-bottom: var(--ns-space-4);">
