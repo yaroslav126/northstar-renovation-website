@@ -93,7 +93,7 @@ get_template_part( 'template-parts/hero' );
 <!-- Section 8: Featured Renovation Projects -->
 <section class="ns-section" aria-labelledby="portfolio-heading">
 	<div class="ns-container">
-		<div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: var(--ns-space-10); flex-wrap: wrap; gap: var(--ns-space-4);">
+		<div class="ns-section-header" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: var(--ns-space-10); flex-wrap: wrap; gap: var(--ns-space-4);">
 			<div>
 				<span class="ns-section-eyebrow"><?php esc_html_e( 'Selected Work', 'northstar-renovation' ); ?></span>
 				<h2 id="portfolio-heading" style="margin-bottom: 0;"><?php esc_html_e( 'Recent Architectural Case Studies', 'northstar-renovation' ); ?></h2>

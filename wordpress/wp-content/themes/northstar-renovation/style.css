@@ -273,8 +273,62 @@ p {
 	color: var(--ns-color-ivory);
 }
 
-.ns-section-header {
+/* ==========================================================================
+   ARCHITECTURAL DRAFTING TEXT ZONES
+   (Vertical lines stop at text, horizontal drafting guidelines appear)
+   ========================================================================== */
+.ns-section-header,
+.ns-drafting-text-block,
+.ns-grid-2 > div:first-child:has(h2),
+.ns-grid-2 > div:first-child:has(p.ns-lead),
+.ns-prose,
+.ns-text-block {
+	position: relative;
+	background-color: var(--ns-color-ivory);
+	background-image: repeating-linear-gradient(
+		0deg,
+		rgba(32, 58, 50, 0.045) 0px,
+		rgba(32, 58, 50, 0.045) 1px,
+		transparent 1px,
+		transparent 36px
+	);
+	border-top: 1px solid rgba(32, 58, 50, 0.16);
+	border-bottom: 1px solid rgba(32, 58, 50, 0.16);
+	padding: var(--ns-space-8) clamp(1.25rem, 3vw, 2.5rem);
+	border-radius: var(--ns-radius-sm);
+	box-shadow: 0 1px 4px rgba(32, 58, 50, 0.02);
 	margin-bottom: var(--ns-space-12);
+}
+
+.ns-grid-2 > div:first-child:has(h2),
+.ns-grid-2 > div:first-child:has(p.ns-lead) {
+	margin-bottom: 0;
+}
+
+/* For sections with white or stone-light backgrounds */
+.ns-section[style*="background-color: var(--ns-color-white)"] .ns-section-header,
+.ns-section[style*="background-color: var(--ns-color-white)"] .ns-drafting-text-block,
+.ns-section[style*="background-color: var(--ns-color-white)"] .ns-grid-2 > div:first-child:has(h2),
+.ns-section-white .ns-section-header {
+	background-color: var(--ns-color-white);
+}
+
+.ns-section[style*="background-color: var(--ns-color-stone-light)"] .ns-section-header,
+.ns-section[style*="background-color: var(--ns-color-stone-light)"] .ns-drafting-text-block,
+.ns-section[style*="background-color: var(--ns-color-stone-light)"] .ns-grid-2 > div:first-child:has(h2) {
+	background-color: var(--ns-color-stone-light);
+}
+
+/* Dark sections preserve dark aesthetic */
+.ns-section-dark .ns-section-header,
+.ns-section-dark .ns-drafting-text-block,
+.ns-section-dark .ns-grid-2 > div:first-child:has(h2) {
+	background-color: transparent;
+	background-image: none;
+	border-top: none;
+	border-bottom: none;
+	padding: 0;
+	box-shadow: none;
 }
 
 .ns-section-header.text-center {
