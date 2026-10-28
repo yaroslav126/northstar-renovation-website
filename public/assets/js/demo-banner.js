@@ -11,7 +11,7 @@
       left: 0;
       right: 0;
       z-index: 2147483647;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: "Times New Roman", Times, Baskerville, Georgia, serif;
       box-sizing: border-box;
       pointer-events: auto;
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
@@ -31,8 +31,9 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      font-size: 13px;
+      font-size: 13.5px;
       line-height: 1.45;
+      font-family: "Times New Roman", Times, Baskerville, Georgia, serif;
     }
     .dev-demo-banner-content {
       display: flex;
@@ -45,26 +46,31 @@
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      background: rgba(234, 179, 8, 0.18);
-      border: 1px solid rgba(234, 179, 8, 0.45);
+      background: rgba(234, 179, 8, 0.22);
+      border: 1px solid rgba(234, 179, 8, 0.55);
       color: #fde047;
       font-weight: 700;
-      font-size: 11px;
+      font-size: 11.5px;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      padding: 3px 8px;
-      border-radius: 9999px;
+      padding: 3px 9px;
+      border-radius: 6px;
       white-space: nowrap;
       flex-shrink: 0;
+      font-family: "Times New Roman", Times, Baskerville, Georgia, serif;
     }
     .dev-demo-banner-text {
       color: #cbd5e1;
       overflow: hidden;
       text-overflow: ellipsis;
+      font-family: "Times New Roman", Times, Baskerville, Georgia, serif;
+      font-size: 13.5px;
+      line-height: 1.45;
     }
     .dev-demo-banner-text strong {
       color: #ffffff;
       font-weight: 600;
+      font-family: "Times New Roman", Times, Baskerville, Georgia, serif;
     }
     .dev-demo-banner-actions {
       display: flex;
@@ -80,11 +86,12 @@
       color: #ffffff !important;
       text-decoration: none !important;
       font-weight: 600;
-      font-size: 12px;
+      font-size: 12.5px;
       padding: 6px 12px;
       border-radius: 6px;
       transition: background 0.2s ease, transform 0.1s ease;
       white-space: nowrap;
+      font-family: "Times New Roman", Times, Baskerville, Georgia, serif;
     }
     .dev-demo-banner-btn-tg:hover {
       background: #0369a1;
@@ -120,11 +127,11 @@
       -webkit-backdrop-filter: blur(10px);
       border: 1px solid rgba(234, 179, 8, 0.4);
       color: #fde047;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: "Times New Roman", Times, Baskerville, Georgia, serif;
       font-size: 12px;
       font-weight: 600;
       padding: 7px 12px;
-      border-radius: 9999px;
+      border-radius: 6px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
       cursor: pointer;
       display: none;

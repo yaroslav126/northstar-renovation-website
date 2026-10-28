@@ -1533,7 +1533,8 @@ p {
 	border: 1px solid rgba(217, 211, 199, 0.15);
 	padding: var(--ns-space-4);
 	border-radius: var(--ns-radius-sm);
-	font-size: 0.8125rem;
+	font-family: "Times New Roman", Times, Baskerville, Georgia, serif;
+	font-size: 0.875rem;
 	line-height: 1.5;
 	color: var(--ns-color-stone);
 	margin-bottom: var(--ns-space-8);
