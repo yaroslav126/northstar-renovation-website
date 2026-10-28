@@ -21,19 +21,19 @@ Tags: construction, architecture, renovation, portfolio, business, custom-header
    1. CSS CUSTOM PROPERTIES (DESIGN SYSTEM TOKENS)
    ========================================================================== */
 :root {
-	/* Core Color Tokens (Warm Natural Yellowish Architectural Palette) */
+	/* Core Color Tokens (Warm Natural Soft Yellowish Architectural Palette) */
 	--ns-color-forest: #203A32;
 	--ns-color-forest-dark: #162822;
 	--ns-color-forest-light: #2A4C42;
-	--ns-color-ivory: #F5EEDC;
-	--ns-color-stone: #D5CBB6;
-	--ns-color-stone-light: #EBE1CC;
+	--ns-color-ivory: #F4ECCF;
+	--ns-color-stone: #E2D5B5;
+	--ns-color-stone-light: #ECE1BD;
 	--ns-color-charcoal: #272A28;
 	--ns-color-terracotta: #B96C4B;
 	--ns-color-terracotta-dark: #975235;
-	--ns-color-white: #FAF6EC;
+	--ns-color-white: #FAF3DC;
 	--ns-color-muted: #585F5B;
-	--ns-color-border: #DCD2BC;
+	--ns-color-border: #DCD0AE;
 
 	/* Semantic Feedback Tokens */
 	--ns-color-success-bg: #E8F4EC;

@@ -26,13 +26,13 @@
 				},
 				{
 					"slug": "ivory",
-					"color": "#F7F5EF",
-					"name": "Warm Ivory"
+					"color": "#F4ECCF",
+					"name": "Soft Yellowish Ivory"
 				},
 				{
 					"slug": "stone",
-					"color": "#D9D3C7",
-					"name": "Muted Stone"
+					"color": "#E2D5B5",
+					"name": "Warm Muted Stone"
 				},
 				{
 					"slug": "charcoal",
@@ -46,8 +46,8 @@
 				},
 				{
 					"slug": "white",
-					"color": "#FFFFFF",
-					"name": "Pure White"
+					"color": "#FAF3DC",
+					"name": "Soft Yellowish Cream"
 				}
 			]
 		},
