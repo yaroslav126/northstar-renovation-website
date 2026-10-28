@@ -101,6 +101,13 @@ body {
 	display: flex;
 	flex-direction: column;
 	background-color: var(--ns-color-ivory);
+	background-image: repeating-linear-gradient(
+		90deg,
+		rgba(32, 58, 50, 0.045) 0px,
+		rgba(32, 58, 50, 0.045) 1px,
+		transparent 1px,
+		transparent 48px
+	);
 	color: var(--ns-color-charcoal);
 	overflow-x: hidden;
 }
@@ -235,6 +242,16 @@ p {
 	padding-top: var(--ns-space-16);
 	padding-bottom: var(--ns-space-16);
 	border-bottom: 1px solid var(--ns-color-border);
+}
+
+.ns-section:not(.ns-section-dark) {
+	background-image: repeating-linear-gradient(
+		90deg,
+		rgba(32, 58, 50, 0.045) 0px,
+		rgba(32, 58, 50, 0.045) 1px,
+		transparent 1px,
+		transparent 48px
+	);
 }
 
 .ns-section-dark {
